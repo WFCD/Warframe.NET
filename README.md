@@ -5,4 +5,4 @@ Written in C#
 
 ![appveyor build](https://ci.appveyor.com/api/projects/status/bn8a7ed8mexc92ms/branch/master?svg=true)
 
-Licensed under the MIT License. See LICENSE.MD for more information.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
