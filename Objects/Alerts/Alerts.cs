@@ -50,13 +50,4 @@ namespace WarframeNET
         [JsonProperty("maxWaveNum")]
         public int WaveMaxNumber { get; set; }
     }
-
-    public class Reward
-    {
-        public string[] Items { get; set; }
-
-        public object[] CountedItems { get; set; }
-
-        public int Credits { get; set; }
-    }
 }
