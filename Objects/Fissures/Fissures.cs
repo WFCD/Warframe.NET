@@ -28,6 +28,6 @@ namespace WarframeNET
         public DateTime StartTime { get; set; }
 
         [JsonProperty("expiry")]
-        public DateTime Expiry { get; set; }
+        public DateTime EndTime { get; set; }
     }
 }
