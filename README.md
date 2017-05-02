@@ -1,5 +1,5 @@
 # Warframe.NET
-An asynchronous .NET Wrapper for Warframe's World Slate API.
+An asynchronous .NET Wrapper for Warframe's World State API.
 
 Written in C#
 
