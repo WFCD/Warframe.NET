@@ -8,6 +8,8 @@ namespace WarframeNET
     public class GlobalUpgrades
     {
         public List<GlobalUpgrade> Content { get; set; }
+
+        internal GlobalUpgrades() { }
     }
 
     public class GlobalUpgrade
@@ -23,5 +25,7 @@ namespace WarframeNET
 
         [JsonProperty("expiry")]
         public DateTime EndTime { get; set; }
+
+        internal GlobalUpgrade() { }
     }
 }

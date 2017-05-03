@@ -7,6 +7,8 @@ namespace WarframeNET
     public class DailyDeals
     {
         public List<DailyDeal> Content { get; set; }
+
+        internal DailyDeals() { }
     }
 
     public class DailyDeal
@@ -25,5 +27,7 @@ namespace WarframeNET
 
         [JsonProperty("expiry")]
         public DateTime EndTime { get; set; }
+
+        internal DailyDeal() { }
     }
 }

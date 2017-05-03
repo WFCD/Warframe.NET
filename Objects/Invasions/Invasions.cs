@@ -7,6 +7,8 @@ namespace WarframeNET
     public class Invasions
     {
         public List<Invasion> Content { get; set; }
+
+        internal Invasions() { }
     }
 
     public class Invasion
@@ -38,5 +40,7 @@ namespace WarframeNET
         public float Completion { get; set; }
 
         public bool IsCompleted { get; set; }
+
+        internal Invasion() { }
     }
 }

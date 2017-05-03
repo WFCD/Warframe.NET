@@ -9,5 +9,7 @@ namespace WarframeNET
         public List<CountedItem> CountedItems { get; set; }
 
         public int Credits { get; set; }
+
+        internal Reward() { }
     }
 }

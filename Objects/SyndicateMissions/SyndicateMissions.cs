@@ -7,6 +7,8 @@ namespace WarframeNET
     public class SyndicateMissions
     {
         public List<SyndicateMission> Content { get; set; }
+
+        internal SyndicateMissions() { }
     }
 
     public class SyndicateMission
@@ -22,5 +24,7 @@ namespace WarframeNET
         public string Syndicate { get; set; }
 
         public List<string> Nodes { get; set; }
+
+        internal SyndicateMission() { }
     }
 }

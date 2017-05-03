@@ -5,10 +5,12 @@ namespace WarframeNET
 {
     public class News
     {
-        public List<Article> Articles { get; set; }
+        public List<NewsArticle> Articles { get; set; }
+
+        internal News() { }
     }
 
-    public class Article
+    public class NewsArticle
     {
         public string Id { get; set; }
 
@@ -21,5 +23,7 @@ namespace WarframeNET
         public DateTime Date { get; set; }
 
         public string ImageLink { get; set; }
+
+        internal NewsArticle() { }
     }
 }

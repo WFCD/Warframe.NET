@@ -6,10 +6,9 @@ namespace WarframeNET
 {
     public class Alerts
     {
-        /// <summary>
-        /// Get a collection of Alerts.
-        /// </summary>
         public List<Alert> Content { get; set; }
+
+        internal Alerts() { }
     }
 
     public class Alert
@@ -23,5 +22,7 @@ namespace WarframeNET
         public DateTime EndTime { get; set; }
 
         public Mission Mission { get; set; }
+
+        internal Alert() { }
     }
 }

@@ -7,6 +7,8 @@ namespace WarframeNET
     public class Events
     {
         public List<Event> Content { get; set; }
+
+        internal Events() { }
     }
 
     public class Event
@@ -38,5 +40,7 @@ namespace WarframeNET
         public int? LargeInterval { get; set; }
 
         public int MaximumScore { get; set; }
+
+        internal Event() { }
     }
 }

@@ -7,6 +7,8 @@ namespace WarframeNET
     public class FlashSales
     {
         public List<FlashSale> Content { get; set; }
+
+        internal FlashSales() { }
     }
 
     public class FlashSale
@@ -25,5 +27,7 @@ namespace WarframeNET
         public bool IsFeatured { get; set; }
 
         public bool IsPopular { get; set; }
+
+        internal FlashSale() { }
     }
 }

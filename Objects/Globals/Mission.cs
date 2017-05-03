@@ -26,5 +26,7 @@ namespace WarframeNET
 
         [JsonProperty("maxWaveNum")]
         public int WaveMaxNumber { get; set; }
+
+        internal Mission() { }
     }
 }
