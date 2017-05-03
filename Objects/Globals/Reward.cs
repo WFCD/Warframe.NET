@@ -6,7 +6,7 @@ namespace WarframeNET
     {
         public List<string> Items { get; set; }
 
-        public object[] CountedItems { get; set; }
+        public List<CountedItem> CountedItems { get; set; }
 
         public int Credits { get; set; }
     }

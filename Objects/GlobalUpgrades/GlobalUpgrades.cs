@@ -16,13 +16,12 @@ namespace WarframeNET
 
         public string Upgrade { get; set; }
 
+        public string UpgradeOperationValue { get; set; }
+
         [JsonProperty("activation")]
         public DateTime StartTime { get; set; }
 
         [JsonProperty("expiry")]
         public DateTime EndTime { get; set; }
-
-        // TODO: FIND THE REAL TYPE
-        public object UpgradeOperationValue { get; set; }
     }
 }
