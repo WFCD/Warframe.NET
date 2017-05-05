@@ -2,9 +2,9 @@
 
 namespace WarframeNET
 {
-    public struct Endpoint
+    public static class Endpoint
     {
-        [Obsolete("This is the default endpoint. To GET from that endpoint, please use WarframeClient.GetWorldStateAsync()")]
+        [Obsolete("This is not the worldstate endpoint. To GET from the worldstate, please use WarframeClient.GetWorldStateAsync()")]
         public const string WorldState = "https://ws.warframestat.us/";
 
         public const string Alerts = "alerts";
@@ -36,5 +36,7 @@ namespace WarframeNET
         public const string SyndicateMissions = "syndicateMissions";
 
         public const string VoidTrader = "voidTrader";
+
+        public static readonly string[] List = { Alerts, ConclaveChallenges, DailyDeals, DarkSectors, Events, FlashSales, Fissures, GlobalUpgrades, Invasions, News, PersistentEnemies, Simaris, Sortie, SyndicateMissions, VoidTrader };
     }
 }
