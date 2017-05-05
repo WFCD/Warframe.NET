@@ -1,11 +1,9 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 
 namespace WarframeNET
 {
     public class WarframeClient
     {
-        public event WorldState WorldStateUpdated;
-
         public WarframeClient() { }
     }
 }
