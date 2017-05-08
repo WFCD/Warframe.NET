@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
+	<PackageId>WarframeNET.Erlite</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Authors>Erlite</Authors>
+    <Description>.NET Standard 1.4 Asynchronous wrapper for Warframe's World State API</Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>First Release</PackageReleaseNotes>
+    <Copyright>Copyright 2017 (c) Erlite. All rights reserved.</Copyright>
+    <PackageTags>warframe wrapper net api</PackageTags>
     <AssemblyName>WarframeNET</AssemblyName>
     <RootNamespace>WarframeNET</RootNamespace>
   </PropertyGroup>
