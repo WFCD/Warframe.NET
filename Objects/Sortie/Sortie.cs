@@ -27,10 +27,10 @@ namespace WarframeNET
 
     public class SortieVariant
     {
-        [Obsolete("This property is deprecated. Please use Sorties.Boss instead.", true)]
+        [Obsolete("This property is deprecated. Please use Sorties.Boss instead.")]
         public string Boss { get; set; }
 
-        [Obsolete("This property is deprecated. Please use SortieVariant.Node instead.", true)]
+        [Obsolete("This property is deprecated. Please use SortieVariant.Node instead.")]
         public string Planet { get; set; }
 
         public string MissionType { get; set; }

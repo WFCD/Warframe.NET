@@ -10,7 +10,7 @@ namespace WarframeNET
         /// <summary>
         /// Get the current world state for a given platform.
         /// </summary>
-        /// <param name="platform"> The platform to get info from. See the Platform struct.</param>
+        /// <param name="platform"> The platform to get info from. See the Platform class.</param>
         /// <returns></returns>
         public async Task<WorldState> GetWorldStateAsync(string platform)
         {
@@ -40,6 +40,12 @@ namespace WarframeNET
 
         }
 
+        /// <summary>
+        /// Get the current state of a Warframe World State Endpoint.
+        /// </summary>
+        /// <typeparam name="T"> The object to return. Must be from WarframeNET and a correct endpoint.</typeparam>
+        /// <param name="platform"> The platform to get info from. See the Platform class.</param>
+        /// <returns></returns>
         public async Task<T> GetWorldEndpointAsync<T>(string platform)
         {
             var type = typeof(T);
@@ -56,20 +62,23 @@ namespace WarframeNET
 
             var name = Functions.ToCamel(nameof(T));
 
-            if (!Endpoint.List.Any(x => x == Functions.ToCamel(name)))
+            if (!Endpoint.List.Any(x => x == (name)))
             {
                 throw new EndpointNotFoundException($"Unknown api endpoint {nameof(T)}");
             }
 
-
-
-
-
-
-
             using (var client = new HttpClient())
             {
-                var response = await client.GetAsync()
+                #pragma warning disable 0618
+                string endpoint = Endpoint.WorldState + platform + name;
+                #pragma warning restore 0618
+                var response = await client.GetAsync(endpoint);
+
+                var json = await response.Content.ReadAsStringAsync();
+
+                T obj = JsonConvert.DeserializeObject<T>(json);
+
+                return obj;
             }
         }
 
