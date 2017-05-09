@@ -4,13 +4,6 @@ using Newtonsoft.Json;
 
 namespace WarframeNET
 {
-    public class DailyDeals
-    {
-        public List<DailyDeal> Content { get; set; }
-
-        internal DailyDeals() { }
-    }
-
     public class DailyDeal
     {
         public string Item { get; set; }

@@ -4,13 +4,6 @@ using Newtonsoft.Json;
 
 namespace WarframeNET
 {
-    public class Events
-    {
-        public List<Event> Content { get; set; }
-
-        internal Events() { }
-    }
-
     public class Event
     {
         public string Id { get; set; }

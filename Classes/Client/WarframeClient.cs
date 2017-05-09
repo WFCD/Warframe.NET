@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -41,45 +42,76 @@ namespace WarframeNET
         }
 
         /// <summary>
-        /// Get the current state of a Warframe World State Endpoint.
+        /// Get a specific endpoint from the Warframe World State
         /// </summary>
-        /// <typeparam name="T"> The object to return. Must be from WarframeNET and a correct endpoint.</typeparam>
-        /// <param name="platform"> The platform to get info from. See the Platform class.</param>
+        /// <param name="platform"> Platform to check on (See Platform Class) </param>
+        /// <param name="endpoint"> Endpoint to get (See Endpoint Class) </param>
         /// <returns></returns>
-        public async Task<T> GetWorldEndpointAsync<T>(string platform)
+        public async Task<dynamic> GetWorldEndpointAsync(string platform, string endpoint)
         {
-            var type = typeof(T);
-
-            if (type.Namespace != nameof(WarframeNET))
-            {
-                throw new OutOfNamespaceException($"Objects given must be from the WarframeNET namespace");
-            }
-
             if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
 
-            var name = Functions.ToCamel(nameof(T));
-
-            if (!Endpoint.List.Any(x => x == (name)))
+            if (!Endpoint.List.Any(x => x == endpoint))
             {
-                throw new EndpointNotFoundException($"Unknown api endpoint {nameof(T)}");
+                throw new EndpointNotFoundException($"Unknown api endpoint \"{endpoint}\"");
             }
-
-            using (var client = new HttpClient())
+            
+            Type type = typeof(WorldState);
+            #pragma warning disable 0618
+            if (endpoint != Endpoint.WorldState)
             {
-                #pragma warning disable 0618
-                string endpoint = Endpoint.WorldState + platform + name;
-                #pragma warning restore 0618
-                var response = await client.GetAsync(endpoint);
+                switch (endpoint)
+                {
+                    case Endpoint.Alerts: type = typeof(Alert); break;
+                    case Endpoint.ConclaveChallenges: type = typeof(ConclaveChallenge); break;
+                    case Endpoint.DailyDeals: type = typeof(DailyDeal); break;
+                    case Endpoint.DarkSectors: type = typeof(DarkSector); break;
+                    case Endpoint.Events: type = typeof(Event); break;
+                    case Endpoint.Fissures: type = typeof(Fissure); break;
+                    case Endpoint.FlashSales: type = typeof(FlashSale); break;
+                    case Endpoint.GlobalUpgrades: type = typeof(GlobalUpgrade); break;
+                    case Endpoint.Invasions: type = typeof(Invasion); break;
+                    case Endpoint.News: type = typeof(NewsArticle); break;
+                    case Endpoint.PersistentEnemies: type = typeof(PersistentEnemy); break;
+                    case Endpoint.Simaris: type = typeof(Simaris); break;
+                    case Endpoint.Sortie: type = typeof(Sortie); break;
+                    case Endpoint.SyndicateMissions: type = typeof(SyndicateMission); break;
+                    case Endpoint.VoidTrader: type = typeof(VoidTrader); break;
+                }
 
-                var json = await response.Content.ReadAsStringAsync();
+                using (var client = new HttpClient())
+                {
+                    string EndUrl = Endpoint.WorldState + platform + endpoint;
+                    var response = await client.GetAsync(EndUrl);
 
-                T obj = JsonConvert.DeserializeObject<T>(json);
+                    var json = await response.Content.ReadAsStringAsync();
 
-                return obj;
+                    var obj = Activator.CreateInstance(type);
+
+                    obj = JsonConvert.DeserializeObject(json);
+
+                    return obj;
+                }
             }
+            else
+            {
+                using (var client = new HttpClient())
+                {
+
+                    string EndUrl = Endpoint.WorldState + platform + endpoint;
+                    var response = await client.GetAsync(EndUrl);
+
+                    var json = await response.Content.ReadAsStringAsync();
+
+                    var obj = JsonConvert.DeserializeObject<WorldState>(json);
+
+                    return obj;
+                }
+            }
+            #pragma warning restore 0618
         }
 
         public WarframeClient() { }

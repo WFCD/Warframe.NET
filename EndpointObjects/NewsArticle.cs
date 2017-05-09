@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace WarframeNET
 {
-    public class News
-    {
-        public List<NewsArticle> Articles { get; set; }
-
-        internal News() { }
-    }
-
     public class NewsArticle
     {
         public string Id { get; set; }

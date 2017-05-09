@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
-
 
 namespace WarframeNET
 {
-    public class GlobalUpgrades
-    {
-        public List<GlobalUpgrade> Content { get; set; }
-
-        internal GlobalUpgrades() { }
-    }
-
     public class GlobalUpgrade
     {
         public string Operation { get; set; }

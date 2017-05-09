@@ -4,14 +4,7 @@ using Newtonsoft.Json;
 
 namespace WarframeNET
 {
-    public class SyndicateMissions
-    {
-        public List<SyndicateMission> Content { get; set; }
-
-        internal SyndicateMissions() { }
-    }
-
-    public class SyndicateMission
+    public class Alert
     {
         public string Id { get; set; }
 
@@ -21,10 +14,8 @@ namespace WarframeNET
         [JsonProperty("expiry")]
         public DateTime EndTime { get; set; }
 
-        public string Syndicate { get; set; }
+        public Mission Mission { get; set; }
 
-        public List<string> Nodes { get; set; }
-
-        internal SyndicateMission() { }
+        internal Alert() { }
     }
 }

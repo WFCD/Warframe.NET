@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace WarframeNET
@@ -8,49 +9,49 @@ namespace WarframeNET
         public DateTime Timestamp { get; set; }
 
         [JsonProperty("news")]
-        public News WS_News { get; set; }
+        public List<NewsArticle> WS_News { get; set; }
 
         [JsonProperty("events")]
-        public Events WS_Events { get; set; }
+        public List<Event> WS_Events { get; set; }
 
         [JsonProperty("alerts")]
-        public Alerts WS_Alerts { get; set; }
+        public List<Alert> WS_Alerts { get; set; }
 
         [JsonProperty("sortie")]
         public Sortie WS_Sortie { get; set; }
 
         [JsonProperty("syndicateMissions")]
-        public SyndicateMissions WS_SyndicateMissions { get; set; }
+        public List<SyndicateMission> WS_SyndicateMissions { get; set; }
 
         [JsonProperty("fissures")]
-        public Fissures WS_Fissures { get; set; }
+        public List<Fissure> WS_Fissures { get; set; }
 
         [JsonProperty("globalUpgrades")]
-        public GlobalUpgrades WS_GlobalUpgrades { get; set; }
+        public List<GlobalUpgrade> WS_GlobalUpgrades { get; set; }
 
         [JsonProperty("flashSales")]
-        public FlashSales WS_FlashSales { get; set; }
+        public List<FlashSale> WS_FlashSales { get; set; }
 
         [JsonProperty("invasions")]
-        public Invasions WS_Invasions { get; set; }
+        public Invasion WS_Invasions { get; set; }
 
         [JsonProperty("darkSectors")]
-        public DarkSectors WS_DarkSectors { get; set; }
+        public List<DarkSector> WS_DarkSectors { get; set; }
 
         [JsonProperty("voidTrader")]
         public VoidTrader WS_VoidTrader { get; set; }
 
         [JsonProperty("dailyDeals")]
-        public DailyDeals WS_DailyDeals { get; set; }
+        public List<DailyDeal> WS_DailyDeals { get; set; }
 
         [JsonProperty("simaris")]
         public Simaris WS_Simaris { get; set; }
 
         [JsonProperty("conclaveChallenges")]
-        public ConclaveChallenges WS_ConclaveChallenges { get; set; }
+        public List<ConclaveChallenge> WS_ConclaveChallenges { get; set; }
 
         [JsonProperty("persistentEnemies")]
-        public PersistentEnemies WS_PersistentEnemies { get; set; }
+        public List<PersistentEnemy> WS_PersistentEnemies { get; set; }
 
         internal WorldState() { }
     }

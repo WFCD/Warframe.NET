@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace WarframeNET
 {
-    public class FlashSales
-    {
-        public List<FlashSale> Content { get; set; }
-
-        internal FlashSales() { }
-    }
-
     public class FlashSale
     {
         public string Item { get; set; }

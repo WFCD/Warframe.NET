@@ -4,13 +4,6 @@ using Newtonsoft.Json;
 
 namespace WarframeNET
 {
-    public class DarkSectors
-    {
-        public List<DarkSector> Content { get; set; }
-
-        internal DarkSectors() { }
-    }
-
     public class DarkSector
     {
         public string Id { get; set; }

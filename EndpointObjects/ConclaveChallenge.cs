@@ -4,13 +4,6 @@ using Newtonsoft.Json;
 
 namespace WarframeNET
 {
-    public class ConclaveChallenges
-    {
-        public List<ConclaveChallenge> Content { get; set; }
-
-        internal ConclaveChallenges() { }
-    }
-
     public class ConclaveChallenge
     {
         public string Id { get; set; }

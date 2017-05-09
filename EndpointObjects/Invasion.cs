@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace WarframeNET
 {
-    public class Invasions
-    {
-        public List<Invasion> Content { get; set; }
-
-        internal Invasions() { }
-    }
-
     public class Invasion
     {
         public string Id { get; set; }

@@ -4,13 +4,6 @@ using Newtonsoft.Json;
 
 namespace WarframeNET
 {
-    public class Fissures
-    {
-        public List<Fissure> Content { get; set; }
-
-        internal Fissures() { }
-    }
-
     public class Fissure
     {
         public string Id { get; set; }

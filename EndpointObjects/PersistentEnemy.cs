@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace WarframeNET
 {
-    public class PersistentEnemies
-    {
-        public List<PersistentEnemy> Content { get; set; }
-
-        internal PersistentEnemies() { }
-    }
-
     public class PersistentEnemy
     {
         public string AgentType { get; set; }
