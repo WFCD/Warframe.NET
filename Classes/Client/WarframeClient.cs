@@ -46,7 +46,7 @@ namespace WarframeNET
         /// </summary>
         /// <param name="platform"> Platform to check on (See Platform Class) </param>
         /// <param name="endpoint"> Endpoint to get (See Endpoint Class) </param>
-        /// <returns></returns>
+        /// <returns> Selected endpoint</returns>
         public async Task<dynamic> GetWorldEndpointAsync(string platform, string endpoint)
         {
             if (!Platform.List.Any(x => x == platform))
@@ -58,60 +58,42 @@ namespace WarframeNET
             {
                 throw new EndpointNotFoundException($"Unknown api endpoint \"{endpoint}\"");
             }
-            
-            Type type = typeof(WorldState);
-            #pragma warning disable 0618
-            if (endpoint != Endpoint.WorldState)
+
+            WorldState WorldState;
+
+            using (var client = new HttpClient())
             {
-                switch (endpoint)
-                {
-                    case Endpoint.Alerts: type = typeof(Alert); break;
-                    case Endpoint.ConclaveChallenges: type = typeof(ConclaveChallenge); break;
-                    case Endpoint.DailyDeals: type = typeof(DailyDeal); break;
-                    case Endpoint.DarkSectors: type = typeof(DarkSector); break;
-                    case Endpoint.Events: type = typeof(Event); break;
-                    case Endpoint.Fissures: type = typeof(Fissure); break;
-                    case Endpoint.FlashSales: type = typeof(FlashSale); break;
-                    case Endpoint.GlobalUpgrades: type = typeof(GlobalUpgrade); break;
-                    case Endpoint.Invasions: type = typeof(Invasion); break;
-                    case Endpoint.News: type = typeof(NewsArticle); break;
-                    case Endpoint.PersistentEnemies: type = typeof(PersistentEnemy); break;
-                    case Endpoint.Simaris: type = typeof(Simaris); break;
-                    case Endpoint.Sortie: type = typeof(Sortie); break;
-                    case Endpoint.SyndicateMissions: type = typeof(SyndicateMission); break;
-                    case Endpoint.VoidTrader: type = typeof(VoidTrader); break;
-                }
+                #pragma warning disable 0618
+                string EndUrl = Endpoint.WorldState + platform;
+                var response = await client.GetAsync(EndUrl);
 
-                using (var client = new HttpClient())
-                {
-                    string EndUrl = Endpoint.WorldState + platform + endpoint;
-                    var response = await client.GetAsync(EndUrl);
+                response.EnsureSuccessStatusCode();
 
-                    var json = await response.Content.ReadAsStringAsync();
+                var json = await response.Content.ReadAsStringAsync();
 
-                    var obj = Activator.CreateInstance(type);
-
-                    obj = JsonConvert.DeserializeObject(json);
-
-                    return obj;
-                }
+                WorldState = JsonConvert.DeserializeObject<WorldState>(json);
             }
-            else
+
+            switch (endpoint)
             {
-                using (var client = new HttpClient())
-                {
-
-                    string EndUrl = Endpoint.WorldState + platform + endpoint;
-                    var response = await client.GetAsync(EndUrl);
-
-                    var json = await response.Content.ReadAsStringAsync();
-
-                    var obj = JsonConvert.DeserializeObject<WorldState>(json);
-
-                    return obj;
-                }
+                case Endpoint.Alerts: return WorldState.WS_Alerts;;
+                case Endpoint.ConclaveChallenges: return WorldState.WS_ConclaveChallenges;
+                case Endpoint.DailyDeals: return WorldState.WS_DailyDeals;
+                case Endpoint.DarkSectors: return WorldState.WS_DarkSectors;
+                case Endpoint.Events: return WorldState.WS_Events;
+                case Endpoint.Fissures: return WorldState.WS_Fissures;
+                case Endpoint.FlashSales: return WorldState.WS_FlashSales;
+                case Endpoint.GlobalUpgrades: return WorldState.WS_GlobalUpgrades;
+                case Endpoint.Invasions: return WorldState.WS_Invasions;
+                case Endpoint.News: return WorldState.WS_News;
+                case Endpoint.PersistentEnemies: return WorldState.WS_PersistentEnemies;
+                case Endpoint.Simaris: return WorldState.WS_Simaris;
+                case Endpoint.Sortie: return WorldState.WS_Sortie;
+                case Endpoint.SyndicateMissions: return WorldState.WS_SyndicateMissions;
+                case Endpoint.VoidTrader: return WorldState.WS_VoidTrader;
+                default: return WorldState;
+                #pragma warning restore 0618
             }
-            #pragma warning restore 0618
         }
 
         public WarframeClient() { }
