@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
-	<PackageId>WarframeNET.Erlite</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
+	<PackageId>Warframe.NET</PackageId>
+    <PackageVersion>1.0.1</PackageVersion>
     <Authors>Erlite</Authors>
     <Description>.NET Standard 1.4 Asynchronous wrapper for Warframe's World State API</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -12,6 +12,10 @@
     <PackageTags>warframe wrapper net api</PackageTags>
     <AssemblyName>WarframeNET</AssemblyName>
     <RootNamespace>WarframeNET</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.4\WarframeNET.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

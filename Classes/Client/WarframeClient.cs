@@ -1,17 +1,19 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace WarframeNET
 {
+    /// <summary>
+    /// The base client to GET json from Warframe's World State API.
+    /// </summary>
     public class WarframeClient
     {
         /// <summary>
         /// Get the current world state for a given platform.
         /// </summary>
-        /// <param name="platform"> The platform to get info from. See the Platform class.</param>
+        /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/> </param>
         /// <returns></returns>
         public async Task<WorldState> GetWorldStateAsync(string platform)
         {
@@ -44,9 +46,24 @@ namespace WarframeNET
         /// <summary>
         /// Get a specific endpoint from the Warframe World State
         /// </summary>
-        /// <param name="platform"> Platform to check on (See Platform Class) </param>
-        /// <param name="endpoint"> Endpoint to get (See Endpoint Class) </param>
-        /// <returns> Selected endpoint</returns>
+        /// <param name="platform"> Platform to check on <seealso cref="Platform"/> </param>
+        /// <param name="endpoint"> Endpoint to get <seealso cref="Endpoint"/> </param>
+        /// <returns> Here's a list of possible return types:
+        /// List`1[WarframeNET.Alert]
+        /// List`1[WarframeNET.ConclaveChallenge]
+        /// List`1[WarframeNET.DailyDeal]
+        /// List`1[WarframeNET.DarkSector]
+        /// List`1[WarframeNET.Event]
+        /// List`1[WarframeNET.FlashSale]
+        /// List`1[WarframeNET.Fissure]
+        /// List`1[WarframeNET.GlobalUpgrade]
+        /// List`1[WarframeNET.Invasion]
+        /// List`1[WarframeNET.NewsArticle]
+        /// List`1[WarframeNET.PersistentEnemy]
+        /// WarframeNET.Simaris
+        /// WarframeNET.Sortie
+        /// List`1[WarframeNET.SyndicateMission]
+        /// WarframeNET.VoidTrader</returns>
         public async Task<dynamic> GetWorldEndpointAsync(string platform, string endpoint)
         {
             if (!Platform.List.Any(x => x == platform))
@@ -96,6 +113,9 @@ namespace WarframeNET
             }
         }
 
+        /// <summary>
+        /// Usage: new WarframeClient();
+        /// </summary>
         public WarframeClient() { }
     }
 }
