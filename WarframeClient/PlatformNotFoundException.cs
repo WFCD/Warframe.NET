@@ -2,6 +2,9 @@
 
 namespace WarframeNET
 {
+    /// <summary>
+    /// Thrown when a platform isn't valid.
+    /// </summary>
     [Serializable]
     public class PlatformNotFoundException : Exception
     {

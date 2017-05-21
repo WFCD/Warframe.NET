@@ -108,7 +108,7 @@ namespace WarframeNET
                 case Endpoint.Sortie: return WorldState.WS_Sortie;
                 case Endpoint.SyndicateMissions: return WorldState.WS_SyndicateMissions;
                 case Endpoint.VoidTrader: return WorldState.WS_VoidTrader;
-                default: return WorldState;
+                default: return null;
                 #pragma warning restore 0618
             }
         }

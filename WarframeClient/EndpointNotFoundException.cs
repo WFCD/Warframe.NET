@@ -2,6 +2,9 @@
 
 namespace WarframeNET
 {
+    /// <summary>
+    /// Thrown when an endpoint is incorrect.
+    /// </summary>
     [Serializable]
     public class EndpointNotFoundException : Exception
     {

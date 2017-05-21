@@ -2,7 +2,7 @@
 
 namespace WarframeNET
 {
-    public static class Functions
+    internal static class Functions
     {
         public static string ToCamel(string text)
         {
