@@ -57,12 +57,17 @@ namespace WarframeNET
         /// <summary>
         /// Current health of the defender's rail.
         /// </summary>
-        public int DefenderRailHealReserve { get; set; }
+        [Obsolete("This property has been disabled due to incompatibility.")]
+        [JsonIgnore]
+        public double DefenderRailHealReserve { get; set; }
+
 
         /// <summary>
         /// Start time of the defender's deployement.
         /// </summary>
-        [JsonProperty("defenderDeployemntActivation")]
+        //[JsonProperty("defenderDeployemntActivation")]
+        [Obsolete("This property has been disabled due to incompatibility.")]
+        [JsonIgnore]
         public DateTime DefenderStartTime { get; set; }
 
         /// <summary>

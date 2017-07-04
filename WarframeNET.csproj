@@ -7,11 +7,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
 	<PackageId>Warframe.NET</PackageId>
-    <PackageVersion>1.0.7</PackageVersion>
+    <PackageVersion>1.1.3</PackageVersion>
     <Authors>Erlite</Authors>
     <Description>.NET Standard 1.4 Asynchronous wrapper for Warframe's World State API</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>Fixed NexusItem</PackageReleaseNotes>
+    <PackageReleaseNotes>Disabled Defender Rail HP Reserve (Dark Sector) due to problems.</PackageReleaseNotes>
     <Copyright>Copyright 2017 (c) Erlite. All rights reserved.</Copyright>
     <PackageTags>warframe wrapper net api</PackageTags>
     <AssemblyName>WarframeNET</AssemblyName>

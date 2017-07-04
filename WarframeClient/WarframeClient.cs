@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -14,7 +15,7 @@ namespace WarframeNET
         /// Get the current world state for a given platform.
         /// </summary>
         /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/> </param>
-        /// <returns></returns>
+        /// <returns>The WorldState <seealso cref="WorldState"/></returns>
         public async Task<WorldState> GetWorldStateAsync(string platform)
         {
             if (!Platform.List.Where(x => x == platform).Any())
@@ -22,95 +23,265 @@ namespace WarframeNET
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
 
-            using (var client = new HttpClient())
-            {
-                #pragma warning disable 0618
-                string endpoint = Endpoint.WorldState + platform;
-                #pragma warning restore 0618
-
-                // What? Let me use my own "obsolete" stuff >:]
-
-                var response = await client.GetAsync(endpoint);
-
-                response.EnsureSuccessStatusCode();
-
-                var json = await response.Content.ReadAsStringAsync();
-
-                WorldState state = JsonConvert.DeserializeObject<WorldState>(json);
-
-                return state;
-            }
-
+            WorldState state = await Functions.GetWorldStateAsync(platform);
+            return state;
         }
 
         /// <summary>
-        /// Get a specific endpoint from the Warframe World State
+        /// Get the current alerts for a given platform.
         /// </summary>
-        /// <param name="platform"> Platform to check on <seealso cref="Platform"/> </param>
-        /// <param name="endpoint"> Endpoint to get <seealso cref="Endpoint"/> </param>
-        /// <returns> Here's a list of possible return types:
-        /// List`1[WarframeNET.Alert]
-        /// List`1[WarframeNET.ConclaveChallenge]
-        /// List`1[WarframeNET.DailyDeal]
-        /// List`1[WarframeNET.DarkSector]
-        /// List`1[WarframeNET.Event]
-        /// List`1[WarframeNET.FlashSale]
-        /// List`1[WarframeNET.Fissure]
-        /// List`1[WarframeNET.GlobalUpgrade]
-        /// List`1[WarframeNET.Invasion]
-        /// List`1[WarframeNET.NewsArticle]
-        /// List`1[WarframeNET.PersistentEnemy]
-        /// WarframeNET.Simaris
-        /// WarframeNET.Sortie
-        /// List`1[WarframeNET.SyndicateMission]
-        /// WarframeNET.VoidTrader</returns>
-        public async Task<dynamic> GetWorldEndpointAsync(string platform, string endpoint)
+        /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/></param>
+        /// <returns>A list of Alerts <seealso cref="Alert"/></returns>
+        public async Task<List<Alert>> GetAlertsAsync(string platform)
         {
-            if (!Platform.List.Any(x => x == platform))
+            if (!Platform.List.Where(x => x == platform).Any())
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
 
-            if (!Endpoint.List.Any(x => x == endpoint))
+            WorldState state = await Functions.GetWorldStateAsync(platform);
+            return state.WS_Alerts;
+        }
+
+        /// <summary>
+        /// Get the current conclave challenges for a given platform.
+        /// </summary>
+        /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/></param>
+        /// <returns>A list of Conclave Challenges <seealso cref="ConclaveChallenge"/></returns>
+        public async Task<List<ConclaveChallenge>> GetConclaveChallengesAsync(string platform)
+        {
+            if (!Platform.List.Where(x => x == platform).Any())
             {
-                throw new EndpointNotFoundException($"Unknown api endpoint \"{endpoint}\"");
+                throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
 
-            WorldState WorldState;
+            WorldState state = await Functions.GetWorldStateAsync(platform);
+            return state.WS_ConclaveChallenges;
+        }
 
-            using (var client = new HttpClient())
+        /// <summary>
+        /// Get the current daily deals for a given platform.
+        /// </summary>
+        /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/></param>
+        /// <returns>A list of Daily Deals <seealso cref="DailyDeal"/></returns>
+        public async Task<List<DailyDeal>> GetDailyDealsAsync(string platform)
+        {
+            if (!Platform.List.Where(x => x == platform).Any())
             {
-                #pragma warning disable 0618
-                string EndUrl = Endpoint.WorldState + platform;
-                var response = await client.GetAsync(EndUrl);
-
-                response.EnsureSuccessStatusCode();
-
-                var json = await response.Content.ReadAsStringAsync();
-
-                WorldState = JsonConvert.DeserializeObject<WorldState>(json);
+                throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
 
-            switch (endpoint)
+            WorldState state = await Functions.GetWorldStateAsync(platform);
+            return state.WS_DailyDeals;
+        }
+
+        /// <summary>
+        /// Gets the dark sectors for a given platform.
+        /// </summary>
+        /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/></param>
+        /// <returns>A list of Alerts <seealso cref="DarkSector"/></returns>
+        public async Task<List<DarkSector>> GetDarkSectorsAsync(string platform)
+        {
+            if (!Platform.List.Where(x => x == platform).Any())
             {
-                case Endpoint.Alerts: return WorldState.WS_Alerts;;
-                case Endpoint.ConclaveChallenges: return WorldState.WS_ConclaveChallenges;
-                case Endpoint.DailyDeals: return WorldState.WS_DailyDeals;
-                case Endpoint.DarkSectors: return WorldState.WS_DarkSectors;
-                case Endpoint.Events: return WorldState.WS_Events;
-                case Endpoint.Fissures: return WorldState.WS_Fissures;
-                case Endpoint.FlashSales: return WorldState.WS_FlashSales;
-                case Endpoint.GlobalUpgrades: return WorldState.WS_GlobalUpgrades;
-                case Endpoint.Invasions: return WorldState.WS_Invasions;
-                case Endpoint.News: return WorldState.WS_News;
-                case Endpoint.PersistentEnemies: return WorldState.WS_PersistentEnemies;
-                case Endpoint.Simaris: return WorldState.WS_Simaris;
-                case Endpoint.Sortie: return WorldState.WS_Sortie;
-                case Endpoint.SyndicateMissions: return WorldState.WS_SyndicateMissions;
-                case Endpoint.VoidTrader: return WorldState.WS_VoidTrader;
-                default: return null;
-                #pragma warning restore 0618
+                throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
+
+            WorldState state = await Functions.GetWorldStateAsync(platform);
+            return state.WS_DarkSectors;
+        }
+
+        /// <summary>
+        /// Get the current events for a given platform.
+        /// </summary>
+        /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/></param>
+        /// <returns>A list of Events <seealso cref="Event"/></returns>
+        public async Task<List<Event>> GetEventsAsync(string platform)
+        {
+            if (!Platform.List.Where(x => x == platform).Any())
+            {
+                throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
+            }
+
+            WorldState state = await Functions.GetWorldStateAsync(platform);
+            return state.WS_Events;
+        }
+
+        /// <summary>
+        /// Get the current fissures for a given platform.
+        /// </summary>
+        /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/></param>
+        /// <returns>A list of Fissures <seealso cref="Fissure"/></returns>
+        public async Task<List<Fissure>> GetFissuresAsync(string platform)
+        {
+            if (!Platform.List.Where(x => x == platform).Any())
+            {
+                throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
+            }
+
+            WorldState state = await Functions.GetWorldStateAsync(platform);
+            return state.WS_Fissures;
+        }
+
+
+        /// <summary>
+        /// Get the current flash sales for a given platform.
+        /// </summary>
+        /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/></param>
+        /// <returns>A list of Flash Sales <seealso cref="FlashSale"/></returns>
+        public async Task<List<FlashSale>> GetFlashSalesAsync(string platform)
+        {
+            if (!Platform.List.Where(x => x == platform).Any())
+            {
+                throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
+            }
+
+            WorldState state = await Functions.GetWorldStateAsync(platform);
+            return state.WS_FlashSales;
+        }
+
+        /// <summary>
+        /// Get the current global upgrades for a given platform.
+        /// </summary>
+        /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/></param>
+        /// <returns>A list of Global Upgrades <seealso cref="GlobalUpgrade"/></returns>
+        public async Task<List<GlobalUpgrade>> GetGlobalUpgradesAsync(string platform)
+        {
+            if (!Platform.List.Where(x => x == platform).Any())
+            {
+                throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
+            }
+
+            WorldState state = await Functions.GetWorldStateAsync(platform);
+            return state.WS_GlobalUpgrades;
+        }
+
+        /// <summary>
+        /// Get the current invasions for a given platform.
+        /// </summary>
+        /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/></param>
+        /// <returns>A list of Invasions <seealso cref="Invasion"/></returns>
+        public async Task<List<Invasion>> GetInvasionsAsync(string platform)
+        {
+            if (!Platform.List.Where(x => x == platform).Any())
+            {
+                throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
+            }
+
+            WorldState state = await Functions.GetWorldStateAsync(platform);
+            return state.WS_Invasions;
+        }
+
+        /// <summary>
+        /// Get the current news for a given platform.
+        /// </summary>
+        /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/></param>
+        /// <returns>A list of News Articles <seealso cref="NewsArticle"/></returns>
+        public async Task<List<NewsArticle>> GetNewsAsync(string platform)
+        {
+            if (!Platform.List.Where(x => x == platform).Any())
+            {
+                throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
+            }
+
+            WorldState state = await Functions.GetWorldStateAsync(platform);
+            return state.WS_News;
+        }
+
+        /// <summary>
+        /// Get the current persistent enemies for a given platform.
+        /// </summary>
+        /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/></param>
+        /// <returns>A list of Persistent Enemies <seealso cref="PersistentEnemy"/></returns>
+        public async Task<List<PersistentEnemy>> GetPersistentEnemiesAsync(string platform)
+        {
+            if (!Platform.List.Where(x => x == platform).Any())
+            {
+                throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
+            }
+
+            WorldState state = await Functions.GetWorldStateAsync(platform);
+            return state.WS_PersistentEnemies;
+        }
+
+        /// <summary>
+        /// Get the current news for a given platform.
+        /// </summary>
+        /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/></param>
+        /// <returns>The current Simaris mission <seealso cref="Simaris"/></returns>
+        [System.Obsolete("This endpoint is obsolete and shouldn't be used anymore.")]
+        public async Task<Simaris> GetSimarisAsync(string platform)
+        {
+            if (!Platform.List.Where(x => x == platform).Any())
+            {
+                throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
+            }
+
+            WorldState state = await Functions.GetWorldStateAsync(platform);
+            return state.WS_Simaris;
+        }
+
+        /// <summary>
+        /// Get the current sortie for a given platform.
+        /// </summary>
+        /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/></param>
+        /// <returns>The current Sortie<seealso cref="Sortie"/></returns>
+        public async Task<Sortie> GetSortieAsync(string platform)
+        {
+            if (!Platform.List.Where(x => x == platform).Any())
+            {
+                throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
+            }
+
+            WorldState state = await Functions.GetWorldStateAsync(platform);
+            return state.WS_Sortie;
+        }
+
+        /// <summary>
+        /// Get the current syndicate missions for a given platform.
+        /// </summary>
+        /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/></param>
+        /// <returns>A list of News Articles <seealso cref="NewsArticle"/></returns>
+        public async Task<List<SyndicateMission>> GetSyndicateMissionsAsync(string platform)
+        {
+            if (!Platform.List.Where(x => x == platform).Any())
+            {
+                throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
+            }
+
+            WorldState state = await Functions.GetWorldStateAsync(platform);
+            return state.WS_SyndicateMissions;
+        }
+        /// <summary>
+        /// Get the current void trader for a given platform.
+        /// </summary>
+        /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/></param>
+        /// <returns>The current Void Trader's items. <seealso cref="VoidTrader"/></returns>
+        public async Task<VoidTrader> GetVoidTraderAsync(string platform)
+        {
+            if (!Platform.List.Where(x => x == platform).Any())
+            {
+                throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
+            }
+
+            WorldState state = await Functions.GetWorldStateAsync(platform);
+            return state.WS_VoidTrader;
+        }
+
+        /// <summary>
+        /// Get the timestamp of the last modification of the World State.
+        /// </summary>
+        /// <param name="platform"> The platform to get info from. <seealso cref="Platform"/></param>
+        /// <returns>DateTime (last modification) <seealso cref="NewsArticle"/></returns>
+        public async Task<System.DateTime> GetTimestampAsync(string platform)
+        {
+            if (!Platform.List.Where(x => x == platform).Any())
+            {
+                throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
+            }
+
+            WorldState state = await Functions.GetWorldStateAsync(platform);
+            return state.Timestamp;
         }
 
         /// <summary>

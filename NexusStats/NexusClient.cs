@@ -44,9 +44,16 @@ namespace WarframeNET.NexusStats
 
                 var json = await response.Content.ReadAsStringAsync();
 
-                var item = JsonConvert.DeserializeObject<NexusItem>(json);
-
-                return item;
+                try
+                {
+                    var item = JsonConvert.DeserializeObject<NexusItem>(json);
+                    return item;
+                }
+                catch(System.Exception e)
+                {
+                    System.Console.WriteLine(e.StackTrace);
+                    return null;
+                }
             }
         }
 
