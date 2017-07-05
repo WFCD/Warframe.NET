@@ -58,6 +58,37 @@ namespace WarframeNET.NexusStats
         }
 
         /// <summary>
+        /// Get a player profile from NexusStats
+        /// </summary>
+        /// <param name="name">Name of the player.</param>
+        /// <returns></returns>
+        /// <seealso cref="NexusProfile"/>
+        public async Task<NexusProfile> GetProfileAsync(string name)
+        {
+            name = name.Replace(" ", "%20");
+
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync($"https://api.nexus-stats.com/warframe/v1/players/{name}/profile");
+                response.EnsureSuccessStatusCode();
+
+                var json = await response.Content.ReadAsStringAsync();
+                var obj = JsonConvert.DeserializeObject<NexusProfile>(json);
+
+                if (obj.Error is string error)
+                {
+                    System.Console.WriteLine("[WarframeNET.NexusStats] An error has occured while fetching information for player: " + name);
+                    System.Console.WriteLine("[WarframeNET.NexusStats] Reason: " + obj.ErrorReason);
+                    return null;
+                }
+                else
+                {
+                    return obj;
+                }
+            }
+        }
+
+        /// <summary>
         /// Create a new instance of NexusClient
         /// </summary>
         public NexusClient() { }
