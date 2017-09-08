@@ -104,6 +104,12 @@ namespace WarframeNET
         [JsonProperty("persistentEnemies")]
         public List<PersistentEnemy> WS_PersistentEnemies { get; set; }
 
+        /// <summary>
+        /// Current Earth Cycle Data.
+        /// </summary>
+        [JsonProperty("earthCycle")]
+        public Earthcycle WS_EarthCycle { get; set; }
+
         internal WorldState() { }
     }
 }
