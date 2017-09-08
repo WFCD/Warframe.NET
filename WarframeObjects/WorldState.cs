@@ -108,7 +108,7 @@ namespace WarframeNET
         /// Current Earth Cycle Data.
         /// </summary>
         [JsonProperty("earthCycle")]
-        public Earthcycle WS_EarthCycle { get; set; }
+        public EarthCycle WS_EarthCycle { get; set; }
 
         internal WorldState() { }
     }

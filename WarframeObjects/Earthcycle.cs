@@ -2,7 +2,7 @@
 
 namespace WarframeNET
 {
-    public class Earthcycle
+    public class EarthCycle
     {
         public long id { get; set; }
         public DateTime expiry { get; set; }
