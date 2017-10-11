@@ -16,6 +16,12 @@ namespace WarframeNET
         /// Message of the article.
         /// </summary>
         public string Message { get; set; }
+ 
+        /// <summary>
+        /// Estimate Time of Arrival of the article.
+        /// </summary>
+        [JsonProperty("eta")]
+        public string ETA { get; set; }
 
         /// <summary>
         /// Link to the article online.
