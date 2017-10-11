@@ -73,6 +73,7 @@ namespace WarframeNET
         /// <summary>
         /// Is the invasion completed?
         /// </summary>
+        [JsonProperty("completed")]
         public bool IsCompleted { get; set; }
 
         internal Invasion() { }

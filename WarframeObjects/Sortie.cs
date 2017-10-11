@@ -46,6 +46,9 @@ namespace WarframeNET
         /// </summary>
         public string Faction { get; set; }
 
+        [JsonProperty("eta")]
+        public string ETA { get; set; }
+
         internal Sortie() { }
     }
 
@@ -75,6 +78,12 @@ namespace WarframeNET
         /// Modifier of the variant.
         /// </summary>
         public string Modifier { get; set; }
+
+        /// <summary>
+        /// Modifier of the variant.
+        /// </summary>
+        [JsonProperty("modifierDescription")]
+        public string ModifierDescription { get; set; }
 
         /// <summary>
         /// Node of the variant.
