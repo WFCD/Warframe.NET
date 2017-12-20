@@ -110,6 +110,13 @@ namespace WarframeNET
         [JsonProperty("earthCycle")]
         public EarthCycle WS_EarthCycle { get; set; }
 
+        /// <summary>
+        /// Current Cetus Cycle Data.
+        /// </summary>
+        [JsonProperty("cetusCycle")]
+        public CetusCycle WS_CetusCycle { get; set; }
+
+
         internal WorldState() { }
     }
 }
