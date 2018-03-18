@@ -18,7 +18,7 @@ namespace WarframeNET
         /// <returns>The WorldState <seealso cref="WorldState"/></returns>
         public async Task<WorldState> GetWorldStateAsync(string platform)
         {
-            if (!Platform.List.Where(x => x == platform).Any())
+            if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
@@ -34,7 +34,7 @@ namespace WarframeNET
         /// <returns>A list of Alerts <seealso cref="Alert"/></returns>
         public async Task<List<Alert>> GetAlertsAsync(string platform)
         {
-            if (!Platform.List.Where(x => x == platform).Any())
+            if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
@@ -50,7 +50,7 @@ namespace WarframeNET
         /// <returns>A list of Conclave Challenges <seealso cref="ConclaveChallenge"/></returns>
         public async Task<List<ConclaveChallenge>> GetConclaveChallengesAsync(string platform)
         {
-            if (!Platform.List.Where(x => x == platform).Any())
+            if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
@@ -66,7 +66,7 @@ namespace WarframeNET
         /// <returns>A list of Daily Deals <seealso cref="DailyDeal"/></returns>
         public async Task<List<DailyDeal>> GetDailyDealsAsync(string platform)
         {
-            if (!Platform.List.Where(x => x == platform).Any())
+            if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
@@ -82,7 +82,7 @@ namespace WarframeNET
         /// <returns>A list of Alerts <seealso cref="DarkSector"/></returns>
         public async Task<List<DarkSector>> GetDarkSectorsAsync(string platform)
         {
-            if (!Platform.List.Where(x => x == platform).Any())
+            if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
@@ -98,7 +98,7 @@ namespace WarframeNET
         /// <returns>A list of Events <seealso cref="Event"/></returns>
         public async Task<List<Event>> GetEventsAsync(string platform)
         {
-            if (!Platform.List.Where(x => x == platform).Any())
+            if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
@@ -114,7 +114,7 @@ namespace WarframeNET
         /// <returns>A list of Fissures <seealso cref="Fissure"/></returns>
         public async Task<List<Fissure>> GetFissuresAsync(string platform)
         {
-            if (!Platform.List.Where(x => x == platform).Any())
+            if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
@@ -131,7 +131,7 @@ namespace WarframeNET
         /// <returns>A list of Flash Sales <seealso cref="FlashSale"/></returns>
         public async Task<List<FlashSale>> GetFlashSalesAsync(string platform)
         {
-            if (!Platform.List.Where(x => x == platform).Any())
+            if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
@@ -147,7 +147,7 @@ namespace WarframeNET
         /// <returns>A list of Global Upgrades <seealso cref="GlobalUpgrade"/></returns>
         public async Task<List<GlobalUpgrade>> GetGlobalUpgradesAsync(string platform)
         {
-            if (!Platform.List.Where(x => x == platform).Any())
+            if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
@@ -163,7 +163,7 @@ namespace WarframeNET
         /// <returns>A list of Invasions <seealso cref="Invasion"/></returns>
         public async Task<List<Invasion>> GetInvasionsAsync(string platform)
         {
-            if (!Platform.List.Where(x => x == platform).Any())
+            if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
@@ -179,7 +179,7 @@ namespace WarframeNET
         /// <returns>A list of News Articles <seealso cref="NewsArticle"/></returns>
         public async Task<List<NewsArticle>> GetNewsAsync(string platform)
         {
-            if (!Platform.List.Where(x => x == platform).Any())
+            if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
@@ -195,7 +195,7 @@ namespace WarframeNET
         /// <returns>A list of Persistent Enemies <seealso cref="PersistentEnemy"/></returns>
         public async Task<List<PersistentEnemy>> GetPersistentEnemiesAsync(string platform)
         {
-            if (!Platform.List.Where(x => x == platform).Any())
+            if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
@@ -212,7 +212,7 @@ namespace WarframeNET
         [System.Obsolete("This endpoint is obsolete and shouldn't be used anymore.")]
         public async Task<Simaris> GetSimarisAsync(string platform)
         {
-            if (!Platform.List.Where(x => x == platform).Any())
+            if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
@@ -228,7 +228,7 @@ namespace WarframeNET
         /// <returns>The current Sortie<seealso cref="Sortie"/></returns>
         public async Task<Sortie> GetSortieAsync(string platform)
         {
-            if (!Platform.List.Where(x => x == platform).Any())
+            if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
@@ -244,7 +244,7 @@ namespace WarframeNET
         /// <returns>A list of News Articles <seealso cref="NewsArticle"/></returns>
         public async Task<List<SyndicateMission>> GetSyndicateMissionsAsync(string platform)
         {
-            if (!Platform.List.Where(x => x == platform).Any())
+            if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
@@ -259,7 +259,7 @@ namespace WarframeNET
         /// <returns>The current Void Trader's items. <seealso cref="VoidTrader"/></returns>
         public async Task<VoidTrader> GetVoidTraderAsync(string platform)
         {
-            if (!Platform.List.Where(x => x == platform).Any())
+            if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
@@ -275,7 +275,7 @@ namespace WarframeNET
         /// <returns>DateTime (last modification) <seealso cref="NewsArticle"/></returns>
         public async Task<System.DateTime> GetTimestampAsync(string platform)
         {
-            if (!Platform.List.Where(x => x == platform).Any())
+            if (!Platform.List.Any(x => x == platform))
             {
                 throw new PlatformNotFoundException($"Unknown game platform \"{platform}\"");
             }
