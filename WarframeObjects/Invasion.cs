@@ -27,6 +27,7 @@ namespace WarframeNET
         /// <summary>
         /// Is the invasion versus infected?
         /// </summary>
+        [JsonProperty("vsInfestation")]
         public bool IsVsInfestation { get; set; }
 
         /// <summary>
