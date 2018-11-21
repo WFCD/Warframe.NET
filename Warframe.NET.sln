@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldState", "src\Warframe.NET\WorldState.csproj", "{3DAA880B-34B1-4159-9E37-C0CD15819C32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldState", "src\WorldState\WorldState.csproj", "{3DAA880B-34B1-4159-9E37-C0CD15819C32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldState.Data", "WorldState.Data\WorldState.Data.csproj", "{21D7EFBE-C9C4-4293-8D2D-90BB3B1BBE15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldState.Data", "src\WorldState.Data\WorldState.Data.csproj", "{21D7EFBE-C9C4-4293-8D2D-90BB3B1BBE15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
