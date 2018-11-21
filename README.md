@@ -1,7 +1,7 @@
 # Warframe.NET
 An asynchronous .NET Wrapper for Warframe's World State API.
 
-Written in C#
+## THIS IS THE REWRITE BRANCH, THINGS ARE BOUND TO CHANGE
 
 ![appveyor build](https://ci.appveyor.com/api/projects/status/bn8a7ed8mexc92ms/branch/master?svg=true)
 
