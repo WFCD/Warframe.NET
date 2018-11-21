@@ -1,5 +1,5 @@
 # Warframe.NET
-An asynchronous .NET Wrapper for Warframe's World State API.
+A collection of tools and wrappers made in C# for .NET Developers.
 
 ## THIS IS THE REWRITE BRANCH, THINGS ARE BOUND TO CHANGE
 
