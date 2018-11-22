@@ -9,10 +9,10 @@ namespace WorldState.Data.Models
         public string Id { get; private set; }
 
         [JsonProperty("activation")]
-        public DateTime ActivatedAt { get; private set; }
+        public DateTimeOffset ActivatedAt { get; private set; }
 
         [JsonProperty("expiry")]
-        public DateTime ExpiredAt { get; private set; }
+        public DateTimeOffset ExpiredAt { get; private set; }
 
         [JsonProperty]
         public AlertMission Mission { get; private set; }
