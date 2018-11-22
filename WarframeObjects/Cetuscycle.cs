@@ -1,20 +1,16 @@
-﻿using System;
-
 namespace WarframeNET
 {
     public class CetusCycle
     {
-        public string id { get; set; }
-        public DateTime expiry { get; set; }
-        public bool isDay { get; set; }
-        public string timeLeft { get; set; }
-        public bool isCetus { get; set; }
+        public string Id { get; set; }
+        public DateTime Expiry { get; set; }
+        public bool IsDay { get; set; }
+        public string TimeLeft { get; set; }
+        public bool IsCetus { get; set; }
 
         public string TimeOfDay()
         {
-            if(isDay) { return "Day"; }
-            else { return "Night"; }
+            return IsDay ? "Day" : "Night";
         }
-
     }
 }
