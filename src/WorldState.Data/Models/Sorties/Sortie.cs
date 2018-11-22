@@ -1,0 +1,41 @@
+﻿using Newtonsoft.Json;
+using System;
+
+namespace WorldState.Data.Models
+{
+    public class Sortie
+    {
+        [JsonProperty]
+        public string Id { get; private set; }
+
+        [JsonProperty("activation")]
+        public DateTimeOffset ActivatedAt { get; private set; }
+
+        [JsonProperty("expiry")]
+        public DateTimeOffset ExpirationDate { get; private set; }
+
+        [JsonProperty("startString")]
+        public string TimeSinceActivationString { get; private set; }
+
+        [JsonProperty("active")]
+        public bool IsActive { get; private set; }
+
+        [JsonProperty]
+        public string RewardPool { get; private set; }
+
+        [JsonProperty]
+        public SortieVariant[] Variants { get; private set; }
+
+        [JsonProperty]
+        public string Boss { get; private set; }
+
+        [JsonProperty]
+        public string Faction { get; private set; }
+
+        [JsonProperty("expired")]
+        public bool HasExpired { get; private set; }
+
+        [JsonProperty("eta")]
+        public string TimeRemainingString { get; private set; }
+    }
+}
