@@ -12,7 +12,7 @@ namespace WorldState.Data.Models
         public DateTimeOffset ActivatedAt { get; private set; }
 
         [JsonProperty("expiry")]
-        public DateTimeOffset ExpirationDate { get; private set; }
+        public DateTimeOffset ExpiresAt { get; private set; }
 
         [JsonProperty]
         public AlertMission Mission { get; private set; }
@@ -24,7 +24,7 @@ namespace WorldState.Data.Models
         public bool HasExpired { get; private set; }
 
         [JsonProperty("startString")]
-        public string TimeSinceStart { get; private set; }
+        public string TimeSinceStartString { get; private set; }
 
         [JsonProperty("eta")]
         public string TimeRemaining { get; private set; }
