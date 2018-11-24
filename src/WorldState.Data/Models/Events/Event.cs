@@ -44,8 +44,8 @@ namespace WorldState.Data.Models
         [JsonProperty]
         public string AffiliatedWith { get; private set; }
 
-        [JsonProperty]
-        public EventJob[] Jobs { get; private set; }
+        [JsonProperty("jobs")]
+        public Bounty[] Bounties { get; private set; }
 
         [JsonProperty("asString")]
         public string EventAsString { get; private set; }
