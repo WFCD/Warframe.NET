@@ -26,16 +26,14 @@ namespace WorldState.Data.Models
         [JsonProperty]
         public string Tooltip { get; private set; }
 
-        // TODO: Find correct type for this.
         [JsonProperty]
-        public object[] ConcurrentNodes { get; private set; }
+        public string[] ConcurrentNodes { get; private set; }
 
         [JsonProperty]
         public string VictimNode { get; private set; }
 
-        // TODO: Find correct type for this.
         [JsonProperty]
-        public object[] Rewards { get; private set; }
+        public MissionReward[] Rewards { get; private set; }
 
         [JsonProperty("expired")]
         public bool HasExpired { get; private set; }
