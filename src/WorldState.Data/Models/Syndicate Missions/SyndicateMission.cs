@@ -17,6 +17,9 @@ namespace WorldState.Data.Models
         [JsonProperty("startString")]
         public string TimeSinceStartString { get; private set; }
 
+        [JsonProperty("active")]
+        public bool IsActive { get; private set; }
+
         [JsonProperty]
         public string Syndicate { get; private set; }
 
