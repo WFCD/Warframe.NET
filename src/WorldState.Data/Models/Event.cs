@@ -14,9 +14,6 @@ namespace WorldState.Data.Models
         [JsonProperty("expiry")]
         public DateTimeOffset ExpiresAt { get; private set; }
 
-        [JsonProperty("startString")]
-        public string TimeSinceStartString { get; private set; }
-
         [JsonProperty("active")]
         public bool IsActive { get; private set; }
 
@@ -46,8 +43,5 @@ namespace WorldState.Data.Models
 
         [JsonProperty("jobs")]
         public Bounty[] Bounties { get; private set; }
-
-        [JsonProperty("asString")]
-        public string EventAsString { get; private set; }
     }
 }

@@ -23,12 +23,6 @@ namespace WorldState.Data.Models
         [JsonProperty("expired")]
         public bool HasExpired { get; private set; }
 
-        [JsonProperty("startString")]
-        public string TimeSinceStartString { get; private set; }
-
-        [JsonProperty("eta")]
-        public string TimeRemaining { get; private set; }
-
         [JsonProperty]
         public string[] RewardTypes { get; private set; }
     }

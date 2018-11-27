@@ -13,12 +13,6 @@ namespace WorldState.Data.Models
         [JsonProperty]
         public int Credits { get; private set; }
 
-        [JsonProperty("asString")]
-        public string RewardNameString { get; private set; }
-
-        [JsonProperty("itemString")]
-        public string ItemsNameString { get; private set; }
-
         [JsonProperty]
         public string Thumbnail { get; private set; }
 
