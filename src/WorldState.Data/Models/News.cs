@@ -37,6 +37,9 @@ namespace WorldState.Data.Models
         [JsonProperty]
         public Dictionary<string, string> Translations { get; private set; }
         
+        [JsonProperty("eta")]
+        public string TimeRemaining { get; private set; }
+        
         /// <summary>
         /// Returns the supposed language of this news instance.
         /// This is not accurate as it relies on the fact that the first language in the Translations property is the one used.

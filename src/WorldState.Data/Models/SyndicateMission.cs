@@ -25,5 +25,8 @@ namespace WorldState.Data.Models
 
         [JsonProperty("jobs")]
         public Bounty[] Bounties { get; private set; }
+
+        [JsonProperty("eta")]
+        public string TimeRemaining { get; private set; }
     }
 }
