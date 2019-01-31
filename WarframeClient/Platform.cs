@@ -19,10 +19,15 @@
         /// XBOX-ONE Platform.
         /// </summary>
         public const string XBOXONE = "xb1/";
+        
+        /// <summary>
+        /// NINTENDO SWITCH Platform.
+        /// </summary>
+        public const string SWITCH = "swi/";
 
         /// <summary>
         /// List of correct platforms.
         /// </summary>
-        public static string[] List = { PC, PSFOUR, XBOXONE };
+        public static string[] List = { PC, PSFOUR, XBOXONE, SWITCH };
     }
 }
