@@ -5,9 +5,9 @@ namespace WorldState.Data.Models
     public class Simaris
     {
         [JsonProperty("target")]
-        public string Target { get; set; }
+        public string Target { get; private set; }
 
         [JsonProperty("isTargetActive")]
-        public bool IsTargetActive { get; set; }
+        public bool IsTargetActive { get; private set; }
     }
 }
