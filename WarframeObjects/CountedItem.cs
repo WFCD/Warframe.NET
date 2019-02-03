@@ -3,6 +3,7 @@
     /// <summary>
     /// Resource bonuses in mission rewards.
     /// </summary>
+    [System.Diagnostics.DebuggerDisplay("CountedItem {Type} x{Count}")]
     public class CountedItem
     {
         /// <summary>

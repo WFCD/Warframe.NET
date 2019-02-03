@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace WarframeNET
@@ -7,7 +6,7 @@ namespace WarframeNET
     /// <summary>
     /// In-game fissure.
     /// </summary>
-    public class Fissure
+    public class Fissure : ITimedEvent
     {
         /// <summary>
         /// Id of the fissure.

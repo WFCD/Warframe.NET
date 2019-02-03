@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace WarframeNET
@@ -7,7 +6,7 @@ namespace WarframeNET
     /// <summary>
     /// Alert from the in-game world state.
     /// </summary>
-    public class Alert
+    public class Alert : ITimedEvent
     {
         /// <summary>
         /// Id of the alert.
