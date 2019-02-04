@@ -5,28 +5,28 @@ namespace WorldState.Data.Models
 {
     public class DailyDeal
     {
-        [JsonProperty("id")]
+        [JsonProperty()]
         public string Id { get; private set; }
 
-        [JsonProperty("item")]
+        [JsonProperty()]
         public string Item { get; private set; }
 
         [JsonProperty("expiry")]
         public DateTimeOffset ExpiresAt { get; private set; }
 
-        [JsonProperty("originalPrice")]
+        [JsonProperty()]
         public int OriginalPrice { get; private set; }
 
-        [JsonProperty("salePrice")]
+        [JsonProperty()]
         public int SalePrice { get; private set; }
 
-        [JsonProperty("total")]
+        [JsonProperty()]
         public int Total { get; private set; }
 
-        [JsonProperty("sold")]
+        [JsonProperty()]
         public int Sold { get; private set; }
 
-        [JsonProperty("discount")]
+        [JsonProperty()]
         public int Discount { get; private set; }
     }
 }

@@ -4,10 +4,10 @@ namespace WorldState.Data.Models
 {
     public class Simaris
     {
-        [JsonProperty("target")]
+        [JsonProperty()]
         public string Target { get; private set; }
 
-        [JsonProperty("isTargetActive")]
-        public bool IsTargetActive { get; private set; }
+        [JsonProperty()]
+        public bool TargetActive { get; private set; }
     }
 }
