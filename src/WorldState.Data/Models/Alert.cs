@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
+
 using System;
+using System.Collections.Generic;
 
 namespace WorldState.Data.Models
 {
@@ -24,7 +26,7 @@ namespace WorldState.Data.Models
         public bool HasExpired { get; private set; }
 
         [JsonProperty]
-        public string[] RewardTypes { get; private set; }
+        public List<String> RewardTypes { get; private set; }
 
         [JsonProperty("eta")]
         public string TimeRemaining { get; private set; }

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace WorldState.Data.Models
 {
@@ -24,13 +25,13 @@ namespace WorldState.Data.Models
         public string Tooltip { get; private set; }
 
         [JsonProperty]
-        public string[] ConcurrentNodes { get; private set; }
+        public List<String> ConcurrentNodes { get; private set; }
 
         [JsonProperty]
         public string VictimNode { get; private set; }
 
         [JsonProperty]
-        public MissionReward[] Rewards { get; private set; }
+        public List<MissionReward> Rewards { get; private set; }
 
         [JsonProperty("expired")]
         public bool HasExpired { get; private set; }
@@ -42,6 +43,6 @@ namespace WorldState.Data.Models
         public string AffiliatedWith { get; private set; }
 
         [JsonProperty("jobs")]
-        public Bounty[] Bounties { get; private set; }
+        public List<Bounty> Bounties { get; private set; }
     }
 }

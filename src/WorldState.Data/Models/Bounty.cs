@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
+
+using Newtonsoft.Json;
 
 namespace WorldState.Data.Models
 {
@@ -8,24 +11,24 @@ namespace WorldState.Data.Models
         public string Id { get; private set; }
 
         [JsonProperty]
-        public string[] RewardPool { get; private set; }
+        public List<String> RewardPool { get; private set; }
 
         [JsonProperty]
         public string Type { get; private set; }
 
         [JsonProperty]
-        public int[] EnemyLevels { get; private set; }
+        public List<Int32> EnemyLevels { get; private set; }
 
         [JsonProperty]
-        public int[] StandingStages { get; private set; }
+        public List<Int32> StandingStages { get; private set; }
 
         [JsonIgnore]
-        public int StageCount { get { return StandingStages.Length; } }
+        public int StageCount => StandingStages.Count;
 
         [JsonIgnore]
-        public int MinimumEnemyLevel { get { return EnemyLevels[0]; } }
+        public int MinimumEnemyLevel => EnemyLevels[0];
 
         [JsonIgnore]
-        public int MaximumEnemyLevel { get { return EnemyLevels[1]; } }
+        public int MaximumEnemyLevel => EnemyLevels[1];
     }
 }

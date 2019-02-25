@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace WorldState.Data.Models
 {
@@ -21,10 +22,10 @@ namespace WorldState.Data.Models
         public string Syndicate { get; private set; }
 
         [JsonProperty]
-        public string[] Nodes { get; private set; }
+        public List<String> Nodes { get; private set; }
 
         [JsonProperty("jobs")]
-        public Bounty[] Bounties { get; private set; }
+        public List<Bounty> Bounties { get; private set; }
 
         [JsonProperty("eta")]
         public string TimeRemaining { get; private set; }

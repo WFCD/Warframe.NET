@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace WorldState.Data.Models
 {
@@ -21,7 +22,7 @@ namespace WorldState.Data.Models
         public string RewardPool { get; private set; }
 
         [JsonProperty]
-        public SortieVariant[] Variants { get; private set; }
+        public List<SortieVariant> Variants { get; private set; }
 
         [JsonProperty]
         public string Boss { get; private set; }
