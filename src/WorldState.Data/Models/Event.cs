@@ -25,7 +25,7 @@ namespace WorldState.Data.Models
         public string Tooltip { get; private set; }
 
         [JsonProperty]
-        public List<String> ConcurrentNodes { get; private set; }
+        public List<string> ConcurrentNodes { get; private set; }
 
         [JsonProperty]
         public string VictimNode { get; private set; }

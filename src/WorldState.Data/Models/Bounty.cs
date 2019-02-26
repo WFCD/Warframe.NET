@@ -11,16 +11,16 @@ namespace WorldState.Data.Models
         public string Id { get; private set; }
 
         [JsonProperty]
-        public List<String> RewardPool { get; private set; }
+        public List<string> RewardPool { get; private set; }
 
         [JsonProperty]
         public string Type { get; private set; }
 
         [JsonProperty]
-        public List<Int32> EnemyLevels { get; private set; }
+        public List<int> EnemyLevels { get; private set; }
 
         [JsonProperty]
-        public List<Int32> StandingStages { get; private set; }
+        public List<int> StandingStages { get; private set; }
 
         [JsonIgnore]
         public int StageCount => StandingStages.Count;

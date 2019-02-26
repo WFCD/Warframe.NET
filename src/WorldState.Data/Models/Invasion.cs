@@ -13,17 +13,18 @@ namespace WorldState.Data.Models
     public class Invasion
     {
         [JsonProperty]
-        public String Id { get; private set; }
+        public string Id { get; private set; }
 
         [JsonProperty]
         public DateTimeOffset Activation { get; private set; }
 
         [JsonProperty]
-        public String Node { get; private set; }
+        public string Node { get; private set; }
 
         [JsonProperty("desc")]
-        public String Description { get; private set; }
+        public string Description { get; private set; }
 
+        [JsonProperty]
         public MissionReward AttackerReward { get; private set; }
 
         [JsonProperty("attackingFaction", ItemConverterType = typeof(StringEnumConverter))]
@@ -36,24 +37,24 @@ namespace WorldState.Data.Models
         public Faction Defender { get; private set; }
 
         [JsonProperty("vsInfestation")]
-        public Boolean HasInfestation { get; private set; }
+        public bool HasInfestation { get; private set; }
 
         [JsonProperty]
-        public Int64 Count { get; private set; }
+        public long Count { get; private set; }
 
         [JsonProperty]
-        public Int64 RequiredRuns { get; private set; }
+        public long RequiredRuns { get; private set; }
 
         [JsonProperty]
-        public Double Completion { get; private set; }
+        public double Completion { get; private set; }
 
         [JsonProperty]
-        public Boolean Completed { get; private set; }
+        public bool Completed { get; private set; }
 
         [JsonProperty]
-        public String Eta { get; private set; }
+        public string Eta { get; private set; }
 
         [JsonProperty]
-        public List<String> RewardTypes { get; private set; }
+        public List<string> RewardTypes { get; private set; }
     }
 }

@@ -22,7 +22,7 @@ namespace WorldState.Data.Models
         public string Syndicate { get; private set; }
 
         [JsonProperty]
-        public List<String> Nodes { get; private set; }
+        public List<string> Nodes { get; private set; }
 
         [JsonProperty("jobs")]
         public List<Bounty> Bounties { get; private set; }

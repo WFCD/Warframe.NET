@@ -8,7 +8,7 @@ namespace WorldState.Data.Models
     public class MissionReward
     {
         [JsonProperty]
-        public List<String> Items { get; private set; }
+        public List<string> Items { get; private set; }
 
         [JsonProperty("countedItems")]
         public List<SystemResource> Resources { get; private set; }

@@ -26,7 +26,7 @@ namespace WorldState.Data.Models
         public bool HasExpired { get; private set; }
 
         [JsonProperty]
-        public List<String> RewardTypes { get; private set; }
+        public List<string> RewardTypes { get; private set; }
 
         [JsonProperty("eta")]
         public string TimeRemaining { get; private set; }
