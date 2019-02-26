@@ -4,7 +4,12 @@ using System.Collections.Generic;
 
 namespace WorldState.Data.Models
 {
+#pragma warning disable CA1716
+    // Name "Event" may conflict with keyword and prevent this class from being used in other CLR languages.
+    // But we are doing C#, besides there are @s to save the day anyway.
+    // Ignoring warning CA1716.
     public class Event
+#pragma warning restore CA1716
     {
         [JsonProperty]
         public string Id { get; private set; }
