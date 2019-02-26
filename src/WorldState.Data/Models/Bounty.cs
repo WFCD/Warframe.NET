@@ -25,10 +25,11 @@ namespace WorldState.Data.Models
         [JsonIgnore]
         public int StageCount => StandingStages.Count;
 
+        // I don't like surprises, so the following two shortcuts are guarded.
         [JsonIgnore]
-        public int MinimumEnemyLevel => EnemyLevels[0];
+        public int? MinimumEnemyLevel => EnemyLevels.Count >= 1 ? (int?) EnemyLevels[0] : null;
 
         [JsonIgnore]
-        public int MaximumEnemyLevel => EnemyLevels[1];
+        public int? MaximumEnemyLevel => EnemyLevels.Count >= 2 ? (int?) EnemyLevels[1] : null;
     }
 }
