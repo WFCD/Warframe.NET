@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using WorldState.Data.Enums;
 
 namespace WorldState.Data.Models
 {
@@ -10,8 +12,8 @@ namespace WorldState.Data.Models
         [JsonProperty]
         public string Type { get; private set; }
 
-        [JsonProperty]
-        public string Faction { get; private set; }
+        [JsonProperty(ItemConverterType = typeof(StringEnumConverter))]
+        public Faction Faction { get; private set; }
 
         [JsonProperty]
         public MissionReward Reward { get; private set; }
