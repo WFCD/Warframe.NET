@@ -30,6 +30,8 @@ namespace WorldState.Data.Models
         [JsonProperty("tierNum")]
         public FissureTier Tier { get; private set; }
 
+        // Todo: Is this property really necessary?
+        // Everything's ToString'ed before printing. A single property "Tier" should be enough.
         [JsonProperty("tier")]
         public string TierName { get; private set; }
 
