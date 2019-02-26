@@ -41,10 +41,10 @@ namespace WorldState.Data.Models
         public string TimeRemaining { get; private set; }
         
         /// <summary>
-        /// Returns the supposed language of this news instance.
+        /// Returns the supposed language of this <see cref="News"/> instance.
         /// This is not accurate as it relies on the fact that the first language in the Translations property is the one used.
         /// </summary>
         [JsonIgnore]
-        public string PrimaryLanguage { get { return Translations.Keys.First() ?? "Unknown";  } }
+        public string PrimaryLanguage => Translations.Keys.First() ?? "Unknown";
     }
 }
