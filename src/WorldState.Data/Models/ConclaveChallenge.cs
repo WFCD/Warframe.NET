@@ -21,6 +21,7 @@ namespace WorldState.Data.Models
         [JsonProperty]
         public string Mode { get; private set; }
 
+        // Todo: Duplicate (string representation) of Daily? Remove.
         [JsonProperty]
         public string Category { get; private set; }
 
