@@ -7,7 +7,7 @@ namespace WorldState.Data.Models
         [JsonProperty]
         public string Target { get; private set; }
 
-        [JsonProperty]
-        public bool TargetActive { get; private set; }
+        [JsonProperty("isTargetActive")]
+        public bool IsActive { get; private set; }
     }
 }
