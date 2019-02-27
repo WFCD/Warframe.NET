@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+
+using Newtonsoft.Json;
 
 namespace WorldState.Data.Models
 {
@@ -9,5 +11,10 @@ namespace WorldState.Data.Models
 
         [JsonProperty("isTargetActive")]
         public bool IsActive { get; private set; }
+
+        public override String ToString()
+        {
+            return $"Simaris' {(IsActive ? "current" : "previous")} objective {(IsActive ? "is" : "was")} {Target}.";
+        }
     }
 }
