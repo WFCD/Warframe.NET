@@ -32,5 +32,11 @@ namespace WorldState.Data.Models
 
         [JsonProperty]
         public bool RootChallenge { get; private set; }
+
+        public override String ToString()
+        {
+            return $"{Description} on {Mode} {Amount} {(Amount > 1 ? "times" : "time")} " +
+                   $"in a {(Daily ? "day" : "week")}.";
+        }
     }
 }
