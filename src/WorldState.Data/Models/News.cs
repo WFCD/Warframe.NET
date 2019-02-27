@@ -50,7 +50,7 @@ namespace WorldState.Data.Models
 
         public override String ToString()
         {
-            return $"[{Date.ToLocalTime(): yyyy-MM-dd}][{Message}]({Link})";
+            return $"[{Date.ToLocalTime():yyyy-MM-dd}][{Message}]({Link})";
         }
     }
 }
