@@ -17,8 +17,8 @@ namespace WorldState.Data.Models
         [JsonProperty]
         public string Link { get; private set; }
 
-        [JsonProperty]
-        public string ImageLink { get; private set; }
+        [JsonProperty("imageLink")]
+        public Uri Image { get; private set; }
 
         [JsonProperty("priority")]
         public bool HasPriority { get; private set; }
@@ -47,5 +47,10 @@ namespace WorldState.Data.Models
         /// </summary>
         [JsonIgnore]
         public string PrimaryLanguage => Translations.Keys.First() ?? "Unknown";
+
+        public override String ToString()
+        {
+            return $"[{Date.ToLocalTime(): yyyy-MM-dd}][{Message}]({Link})";
+        }
     }
 }
