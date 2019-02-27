@@ -29,12 +29,22 @@ namespace Samples
         {
             if (!Ping()) throw new WebException("Couldn't connect to WarframeStat. ARE YOU STILL ONLINE?");
 
+            // Do not group all the debugger conditionals into a function for shorthand.
+            // Otherwise, you'll need to switch between stacks to see current variables.
+
+            var news = GetPCNews();
+            if (Debugger.IsAttached) Debugger.Break();
+
+            var conclave = GetPCChallenges();
+            if (Debugger.IsAttached) Debugger.Break();
+
+            var fleet = GetPCFleetConstruction();
+            if (Debugger.IsAttached) Debugger.Break();
+
             var sanctuary = GetPCSimaris();
             if (Debugger.IsAttached) Debugger.Break();
 
             var fissures = GetPCFissures();
-            // Do not group all the debugger conditionals into a function for shorthand.
-            // Otherwise, you'll need to switch between stacks to see current variables.
             if (Debugger.IsAttached) Debugger.Break();
 
             var alerts = GetPCAlerts();
@@ -51,6 +61,39 @@ namespace Samples
             }
 
             Console.WriteLine("You should run this program with debugger attached.");
+        }
+
+        private static List<News> GetPCNews()
+        {
+            using (var stream = Client.GetStreamAsync("/pc/news").Result)
+            using (var reader = new StreamReader(stream))
+            using (var json = new JsonTextReader(reader))
+            {
+                var result = JsonSerializer.CreateDefault().Deserialize<List<News>>(json);
+                return result;
+            }
+        }
+
+        private static List<ConclaveChallenge> GetPCChallenges()
+        {
+            using (var stream = Client.GetStreamAsync("/pc/conclaveChallenges").Result)
+            using (var reader = new StreamReader(stream))
+            using (var json = new JsonTextReader(reader))
+            {
+                var result = JsonSerializer.CreateDefault().Deserialize<List<ConclaveChallenge>>(json);
+                return result;
+            }
+        }
+
+        private static FleetConstruction GetPCFleetConstruction()
+        {
+            using (var stream = Client.GetStreamAsync("/pc/constructionProgress").Result)
+            using (var reader = new StreamReader(stream))
+            using (var json = new JsonTextReader(reader))
+            {
+                var result = JsonSerializer.CreateDefault().Deserialize<FleetConstruction>(json);
+                return result;
+            }
         }
 
         private static Simaris GetPCSimaris()
