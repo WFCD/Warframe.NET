@@ -29,8 +29,18 @@ namespace Samples
         {
             if (!Ping()) throw new WebException("Couldn't connect to WarframeStat. ARE YOU STILL ONLINE?");
 
+            WriteLine("Connected.");
+
+            if (!Debugger.IsAttached)
+            {
+                WriteLine("You should run this program with a debugger attached.");
+            }
+
             // Do not group all the debugger conditionals into a function for shorthand.
             // Otherwise, you'll need to switch between stacks to see current variables.
+
+            var baro = GetPCTrades();
+            if (Debugger.IsAttached) Debugger.Break();
 
             var news = GetPCNews();
             if (Debugger.IsAttached) Debugger.Break();
@@ -55,12 +65,20 @@ namespace Samples
 
             if (Debugger.IsAttached)
             {
-                Debug.WriteLine("EoL");
+                Debug.WriteLine("End of life.");
                 ReadKey();
-                return;
             }
+        }
 
-            Console.WriteLine("You should run this program with debugger attached.");
+        private static VoidTrader GetPCTrades()
+        {
+            using (var stream = Client.GetStreamAsync("/pc/voidTrader").Result)
+            using (var reader = new StreamReader(stream))
+            using (var json = new JsonTextReader(reader))
+            {
+                var result = JsonSerializer.CreateDefault().Deserialize<VoidTrader>(json);
+                return result;
+            }
         }
 
         private static List<News> GetPCNews()
