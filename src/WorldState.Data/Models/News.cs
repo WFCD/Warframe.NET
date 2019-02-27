@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,13 +37,13 @@ namespace WorldState.Data.Models
 
         [JsonProperty]
         public Dictionary<string, string> Translations { get; private set; }
-        
+
         [JsonProperty("eta")]
         public string TimeRemaining { get; private set; }
-        
+
         /// <summary>
         /// Returns the supposed language of this <see cref="News"/> instance.
-        /// This is not accurate as it relies on the fact that the first language in the Translations property is the one used.
+        /// This is not accurate as it relies on the fact that the first language in the <see cref="Translations"/> property is the one used.
         /// </summary>
         [JsonIgnore]
         public string PrimaryLanguage => Translations.Keys.First() ?? "Unknown";

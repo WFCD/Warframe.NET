@@ -1,4 +1,5 @@
 ﻿using System;
+
 using Newtonsoft.Json;
 
 namespace WorldState.Data.Models
@@ -22,7 +23,7 @@ namespace WorldState.Data.Models
 
         [JsonProperty]
         public string Category { get; private set; }
-        
+
         [JsonProperty]
         public bool Expired { get; private set; }
 
