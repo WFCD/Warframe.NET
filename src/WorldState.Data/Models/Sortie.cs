@@ -2,6 +2,10 @@
 using System;
 using System.Collections.Generic;
 
+using Newtonsoft.Json.Converters;
+
+using WorldState.Data.Enums;
+
 namespace WorldState.Data.Models
 {
     public class Sortie
@@ -27,8 +31,8 @@ namespace WorldState.Data.Models
         [JsonProperty]
         public string Boss { get; private set; }
 
-        [JsonProperty]
-        public string Faction { get; private set; }
+        [JsonProperty(ItemConverterType = typeof(StringEnumConverter))]
+        public Faction Faction { get; private set; }
 
         [JsonProperty("expired")]
         public bool HasExpired { get; private set; }
