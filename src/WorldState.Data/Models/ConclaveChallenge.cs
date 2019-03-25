@@ -21,8 +21,10 @@ namespace WorldState.Data.Models
         [JsonProperty("expiry")]
         public DateTimeOffset ExpiresAt { get; private set; }
 
+        /* Todo: See discussions about activation flags on model Alert.
         [JsonIgnore]
         public bool IsActive => DateTime.Now < ExpiresAt.ToLocalTime();
+        */
 
         [JsonProperty]
         public int Amount { get; private set; }

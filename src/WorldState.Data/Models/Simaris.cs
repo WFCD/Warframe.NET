@@ -9,12 +9,12 @@ namespace WorldState.Data.Models
         [JsonProperty]
         public string Target { get; private set; }
 
-        [JsonProperty("isTargetActive")]
-        public bool IsActive { get; private set; }
+        [JsonProperty]
+        public bool IsTargetActive { get; private set; }
 
         public override String ToString()
         {
-            return $"Simaris' {(IsActive ? "current" : "previous")} objective {(IsActive ? "is" : "was")} {Target}.";
+            return $"Simaris' {(IsTargetActive ? "current" : "previous")} objective {(IsTargetActive ? "is" : "was")} {Target}.";
         }
     }
 }

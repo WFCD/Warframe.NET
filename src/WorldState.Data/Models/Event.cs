@@ -15,13 +15,13 @@ namespace WorldState.Data.Models
         public string Id { get; private set; }
 
         [JsonProperty("activation")]
-        public DateTimeOffset ActivatedAt { get; private set; }
+        public DateTimeOffset ActivatesAt { get; private set; }
 
         [JsonProperty("expiry")]
         public DateTimeOffset ExpiresAt { get; private set; }
 
-        [JsonProperty("active")]
-        public bool IsActive { get; private set; }
+        [JsonIgnore]
+        public bool IsActive => DateTime.Now >= ActivatesAt.ToLocalTime() && DateTime.Now < ExpiresAt.ToLocalTime();
 
         [JsonProperty]
         public string Description { get; private set; }
@@ -38,8 +38,10 @@ namespace WorldState.Data.Models
         [JsonProperty]
         public List<MissionReward> Rewards { get; private set; }
 
+        /*
         [JsonProperty("expired")]
         public bool HasExpired { get; private set; }
+        */
 
         [JsonProperty]
         public float Health { get; private set; }

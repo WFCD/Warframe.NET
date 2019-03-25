@@ -15,9 +15,8 @@ namespace WorldState.Data.Models
         [JsonProperty("expiry")]
         public DateTimeOffset ExpiresAt { get; private set; }
 
-        // Should compare with DateTime.Now?
-        [JsonProperty("active")]
-        public bool IsActive { get; private set; }
+        [JsonIgnore]
+        public bool IsActive => DateTime.Now < ExpiresAt.ToLocalTime() && DateTime.Now >= ActivatesAt.ToLocalTime();
 
         [JsonProperty("character")]
         public string CharacterName { get; private set; }
@@ -25,7 +24,7 @@ namespace WorldState.Data.Models
         [JsonProperty]
         public string Location { get; private set; }
 
-        // What is this?
+        // What is this? PlayStation?
         [JsonProperty]
         protected string PsId { get; private set; }
 

@@ -16,7 +16,7 @@ namespace WorldState.Data.Models
         public string Id { get; private set; }
 
         [JsonProperty]
-        public DateTimeOffset Activation { get; private set; }
+        public DateTimeOffset ActivatesAt { get; private set; }
 
         [JsonProperty]
         public string Node { get; private set; }
