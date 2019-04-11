@@ -18,10 +18,10 @@ namespace WarframeNET.NexusStats
         {
             using (var client = new HttpClient())
             {
-                var response = await client.GetAsync("https://api.nexus-stats.com/warframe/v1/items/list");
+                var response = await client.GetAsync("https://api.nexus-stats.com/warframe/v1/items/list").ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
 
-                var json = await response.Content.ReadAsStringAsync();
+                var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
                 var list = JsonConvert.DeserializeObject<List<NexusItemInfo>>(json);
                 return list;
@@ -39,10 +39,10 @@ namespace WarframeNET.NexusStats
 
             using (var client = new HttpClient())
             {
-                var response = await client.GetAsync($"https://api.nexus-stats.com/warframe/v1/items/{name}/statistics");
+                var response = await client.GetAsync($"https://api.nexus-stats.com/warframe/v1/items/{name}/statistics").ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
 
-                var json = await response.Content.ReadAsStringAsync();
+                var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
                 try
                 {
@@ -69,10 +69,10 @@ namespace WarframeNET.NexusStats
 
             using (var client = new HttpClient())
             {
-                var response = await client.GetAsync($"https://api.nexus-stats.com/warframe/v1/players/{name}/profile");
+                var response = await client.GetAsync($"https://api.nexus-stats.com/warframe/v1/players/{name}/profile").ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
 
-                var json = await response.Content.ReadAsStringAsync();
+                var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 var obj = JsonConvert.DeserializeObject<NexusProfile>(json);
 
                 if (obj.Error is string error)
