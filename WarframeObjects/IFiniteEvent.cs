@@ -2,7 +2,7 @@
 
 namespace WarframeNET
 {
-    public interface ITimedEvent
+    public interface IFiniteEvent
     {
         DateTime EndTime { get; }
     }

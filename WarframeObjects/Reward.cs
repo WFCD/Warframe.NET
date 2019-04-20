@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace WarframeNET
 {
@@ -7,6 +8,9 @@ namespace WarframeNET
     /// </summary>
     public class Reward
     {
+        [JsonProperty("asString")]
+        public string Description { get; set; }
+
         /// <summary>
         /// List of rewarded items.
         /// </summary>

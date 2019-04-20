@@ -6,7 +6,7 @@ namespace WarframeNET
     /// <summary>
     /// In-game fissure.
     /// </summary>
-    public class Fissure : ITimedEvent
+    public class Fissure : IFiniteEvent
     {
         /// <summary>
         /// Id of the fissure.

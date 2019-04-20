@@ -6,7 +6,7 @@ namespace WarframeNET
     /// <summary>
     /// Alert from the in-game world state.
     /// </summary>
-    public class Alert : ITimedEvent
+    public class Alert : IFiniteEvent
     {
         /// <summary>
         /// Id of the alert.

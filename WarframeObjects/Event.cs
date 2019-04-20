@@ -7,7 +7,8 @@ namespace WarframeNET
     /// <summary>
     /// In-game event
     /// </summary>
-    public class Event
+    [System.Diagnostics.DebuggerDisplay("{" + nameof(Description) + "}")]
+    public class Event : IFiniteEvent
     {
         /// <summary>
         /// Id of the event.
@@ -76,6 +77,27 @@ namespace WarframeNET
         /// </summary>
         public int MaximumScore { get; set; }
 
+        public int CurrentScore { get; set; }
+
+        [JsonProperty("health")]
+        public float PercentageRemaining { get; set; }
+
+        public bool IsCommunity { get; set; }
+
+        public bool IsPersonal { get; set; }
+
+        public IEnumerable<EventStep> InterimSteps { get; set; }
+
         internal Event() { }
+    }
+
+    public class EventStep
+    {
+        public int Goal { get; set; }
+
+        [JsonProperty("winnerCount")]
+        public int CountOfPlayersThatHaveCompletedThisStep { get; set; }
+
+        public Reward Reward { get; set; }
     }
 }
