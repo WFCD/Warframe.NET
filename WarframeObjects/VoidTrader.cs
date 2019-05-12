@@ -7,7 +7,7 @@ namespace WarframeNET
     /// <summary>
     /// In-game void trader.
     /// </summary>
-    public class VoidTrader
+    public class VoidTrader : IFiniteEvent
     {
         /// <summary>
         /// Id of the void trader.
