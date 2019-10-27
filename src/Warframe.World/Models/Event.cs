@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
+using Newtonsoft.Json;
 
-namespace WorldState.Data.Models
+namespace Warframe.World.Models
 {
     public class Event
     {

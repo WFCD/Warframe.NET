@@ -1,4 +1,4 @@
-﻿namespace WorldState.Data.Enums
+﻿namespace Warframe.World.Enums
 {
     public enum FissureTier
     {
