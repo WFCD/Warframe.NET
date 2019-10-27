@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using WorldState.Data.Enums;
+﻿using System;
+using Newtonsoft.Json;
+using Warframe.World.Enums;
 
-namespace WorldState.Data.Models
+namespace Warframe.World.Models
 {
     public class Fissure
     {

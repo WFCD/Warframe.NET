@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <RootNamespace>Warframe.World</RootNamespace>
+    <AssemblyName>Warframe.World</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

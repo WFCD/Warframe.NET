@@ -1,14 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldState", "src\WorldState\WorldState.csproj", "{3DAA880B-34B1-4159-9E37-C0CD15819C32}"
-	ProjectSection(ProjectDependencies) = postProject
-		{21D7EFBE-C9C4-4293-8D2D-90BB3B1BBE15} = {21D7EFBE-C9C4-4293-8D2D-90BB3B1BBE15}
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warframe", "src\Warframe\Warframe.csproj", "{6A77F81D-1995-41DF-9C98-05A0D8A3B23E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldState.Data", "src\WorldState.Data\WorldState.Data.csproj", "{21D7EFBE-C9C4-4293-8D2D-90BB3B1BBE15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Warframe.World", "src\Warframe.World\Warframe.World.csproj", "{2E18F19D-A822-43FE-B7BA-6B3CCFD19AAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3DAA880B-34B1-4159-9E37-C0CD15819C32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DAA880B-34B1-4159-9E37-C0CD15819C32}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DAA880B-34B1-4159-9E37-C0CD15819C32}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DAA880B-34B1-4159-9E37-C0CD15819C32}.Release|Any CPU.Build.0 = Release|Any CPU
-		{21D7EFBE-C9C4-4293-8D2D-90BB3B1BBE15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21D7EFBE-C9C4-4293-8D2D-90BB3B1BBE15}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21D7EFBE-C9C4-4293-8D2D-90BB3B1BBE15}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21D7EFBE-C9C4-4293-8D2D-90BB3B1BBE15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A77F81D-1995-41DF-9C98-05A0D8A3B23E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A77F81D-1995-41DF-9C98-05A0D8A3B23E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A77F81D-1995-41DF-9C98-05A0D8A3B23E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A77F81D-1995-41DF-9C98-05A0D8A3B23E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E18F19D-A822-43FE-B7BA-6B3CCFD19AAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E18F19D-A822-43FE-B7BA-6B3CCFD19AAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E18F19D-A822-43FE-B7BA-6B3CCFD19AAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E18F19D-A822-43FE-B7BA-6B3CCFD19AAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
