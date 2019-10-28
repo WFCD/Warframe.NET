@@ -14,6 +14,6 @@ Written in C#
 
 Statuses
 
-[![Build Status](https://travis-ci.com/WFCD/warframe-net.svg?branch=master)](https://travis-ci.com/WFCD/warframe-net)
+[![Build Status](https://travis-ci.com/WFCD/Warframe.NET.svg?branch=master)](https://travis-ci.com/WFCD/Warframe.NET)
 ![appveyor build](https://ci.appveyor.com/api/projects/status/bn8a7ed8mexc92ms/branch/master?svg=true)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/be5a1ae07c3748f39bfb50041fbfe5f9)](https://www.codacy.com/app/TobiTenno/warframe-net?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=WFCD/warframe-net&amp;utm_campaign=Badge_Grade)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e878f6ff135c2077ca40/maintainability)](https://codeclimate.com/github/WFCD/Warframe.NET/maintainability)
