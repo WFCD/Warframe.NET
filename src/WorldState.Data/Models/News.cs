@@ -39,10 +39,10 @@ namespace WorldState.Data.Models
         public Dictionary<string, string> Translations { get; private set; }
 
         /// <summary>
-        /// Returns the supposed language of this news instance.
-        /// This is not accurate as it relies on the fact that the first language in the Translations property is the one used.
+        /// Returns the primary language of this news instance.
+        /// This is not accurate as it relies on the fact that the first language in the <see cref="Translations"/> is the one used.
         /// </summary>
         [JsonIgnore]
-        public string PrimaryLanguage => Translations.Keys.First() ?? "Unknown";
+        public string PrimaryLanguage => Translations?.Keys.FirstOrDefault() ?? "xx";
     }
 }
