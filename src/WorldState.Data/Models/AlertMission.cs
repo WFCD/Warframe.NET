@@ -18,7 +18,7 @@ namespace WorldState.Data.Models
 
         [JsonProperty("minEnemyLevel")]
         public int MinimumEnemyLevel { get; private set; }
-        
+
         [JsonProperty("maxEnemyLevel")]
         public int MaximumEnemyLevel { get; private set; }
 

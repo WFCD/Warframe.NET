@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+
+using Newtonsoft.Json;
 
 namespace WorldState.Data.Models
 {
@@ -14,7 +16,7 @@ namespace WorldState.Data.Models
         public int Credits { get; private set; }
 
         [JsonProperty]
-        public string Thumbnail { get; private set; }
+        public Uri Thumbnail { get; private set; }
 
         [JsonProperty]
         public int Color { get; private set; }

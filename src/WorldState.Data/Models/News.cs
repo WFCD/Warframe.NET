@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,10 @@ namespace WorldState.Data.Models
         public string Message { get; private set; }
 
         [JsonProperty]
-        public string Link { get; private set; }
+        public Uri Link { get; private set; }
 
         [JsonProperty]
-        public string ImageLink { get; private set; }
+        public Uri ImageLink { get; private set; }
 
         [JsonProperty("priority")]
         public bool HasPriority { get; private set; }
@@ -36,15 +37,12 @@ namespace WorldState.Data.Models
 
         [JsonProperty]
         public Dictionary<string, string> Translations { get; private set; }
-        
-        [JsonProperty("eta")]
-        public string TimeRemaining { get; private set; }
-        
+
         /// <summary>
         /// Returns the supposed language of this news instance.
         /// This is not accurate as it relies on the fact that the first language in the Translations property is the one used.
         /// </summary>
         [JsonIgnore]
-        public string PrimaryLanguage { get { return Translations.Keys.First() ?? "Unknown";  } }
+        public string PrimaryLanguage => Translations.Keys.First() ?? "Unknown";
     }
 }

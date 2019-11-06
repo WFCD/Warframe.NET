@@ -1,9 +1,12 @@
 ﻿using Newtonsoft.Json;
+
 using System;
+
+using WorldState.Data.Interfaces;
 
 namespace WorldState.Data.Models
 {
-    public class Sortie
+    public class Sortie : ITimeSensitive
     {
         [JsonProperty]
         public string Id { get; private set; }
@@ -13,9 +16,6 @@ namespace WorldState.Data.Models
 
         [JsonProperty("expiry")]
         public DateTimeOffset ExpiresAt { get; private set; }
-
-        [JsonProperty("active")]
-        public bool IsActive { get; private set; }
 
         [JsonProperty]
         public string RewardPool { get; private set; }
@@ -28,11 +28,5 @@ namespace WorldState.Data.Models
 
         [JsonProperty]
         public string Faction { get; private set; }
-
-        [JsonProperty("expired")]
-        public bool HasExpired { get; private set; }
-
-        [JsonProperty("eta")]
-        public string TimeRemaining { get; private set; }
     }
 }

@@ -1,11 +1,22 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Linq;
+
+using Newtonsoft.Json;
+
+using WorldState.Data.Interfaces;
 
 namespace WorldState.Data.Models
 {
-    public class Bounty
+    public class Bounty : ITimeSensitive
     {
         [JsonProperty]
         public string Id { get; private set; }
+
+        [JsonProperty("activation")]
+        public DateTimeOffset ActivatedAt { get; private set; }
+
+        [JsonProperty("expiry")]
+        public DateTimeOffset ExpiresAt { get; private set; }
 
         [JsonProperty]
         public string[] RewardPool { get; private set; }
@@ -20,12 +31,14 @@ namespace WorldState.Data.Models
         public int[] StandingStages { get; private set; }
 
         [JsonIgnore]
-        public int StageCount { get { return StandingStages.Length; } }
+        public int StageCount => StandingStages.Length;
+
+        // Use LINQ to avoid exceptions when collection is empty.
 
         [JsonIgnore]
-        public int MinimumEnemyLevel { get { return EnemyLevels[0]; } }
+        public int MinimumEnemyLevel => EnemyLevels.FirstOrDefault();
 
         [JsonIgnore]
-        public int MaximumEnemyLevel { get { return EnemyLevels[1]; } }
+        public int MaximumEnemyLevel => EnemyLevels.LastOrDefault();
     }
 }

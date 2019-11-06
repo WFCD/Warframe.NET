@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System;
 
+using WorldState.Data.Interfaces;
+
 namespace WorldState.Data.Models
 {
-    public class Alert
+    public class Alert : ITimeSensitive
     {
         [JsonProperty]
         public string Id { get; private set; }

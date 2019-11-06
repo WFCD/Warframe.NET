@@ -1,14 +1,17 @@
 ﻿using Newtonsoft.Json;
+
 using System;
+
+using WorldState.Data.Interfaces;
 
 namespace WorldState.Data.Models
 {
-    public class GlobalUpgrade
+    public class GlobalUpgrade : ITimeSensitive
     {
-        [JsonProperty("activation")]
+        [JsonProperty("start")]
         public DateTimeOffset ActivatedAt { get; private set; }
 
-        [JsonProperty("expiry")]
+        [JsonProperty("end")]
         public DateTimeOffset ExpiresAt { get; private set; }
 
         [JsonProperty]
@@ -19,11 +22,5 @@ namespace WorldState.Data.Models
 
         [JsonProperty("upgradeOperationValue")]
         public string OperationValue { get; private set; }
-
-        [JsonProperty("expired")]
-        public bool HasExpired { get; private set; }
-
-        [JsonProperty("eta")]
-        public string TimeRemaining { get; private set; }
     }
 }
