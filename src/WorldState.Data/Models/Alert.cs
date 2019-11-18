@@ -19,12 +19,6 @@ namespace WorldState.Data.Models
         [JsonProperty]
         public AlertMission Mission { get; private set; }
 
-        [JsonProperty("active")]
-        public bool IsActive { get; private set; }
-
-        [JsonProperty("expired")]
-        public bool HasExpired { get; private set; }
-
         [JsonProperty]
         public string[] RewardTypes { get; private set; }
 

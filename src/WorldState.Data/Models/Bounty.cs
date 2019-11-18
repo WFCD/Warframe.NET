@@ -36,9 +36,9 @@ namespace WorldState.Data.Models
         // Use LINQ to avoid exceptions when collection is empty.
 
         [JsonIgnore]
-        public int MinimumEnemyLevel => EnemyLevels.FirstOrDefault();
+        public int? MinimumEnemyLevel => EnemyLevels.FirstOrDefault();
 
         [JsonIgnore]
-        public int MaximumEnemyLevel => EnemyLevels.LastOrDefault();
+        public int? MaximumEnemyLevel => EnemyLevels.LastOrDefault();
     }
 }

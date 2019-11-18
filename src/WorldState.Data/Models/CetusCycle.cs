@@ -14,7 +14,6 @@ namespace WorldState.Data.Models
         public string Id { get; private set; }
 
         [JsonProperty("activation")]
-        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTimeOffset ActivatedAt { get; private set; }
 
         [JsonProperty("expiry")]
