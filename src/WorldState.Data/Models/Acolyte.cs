@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace WorldState.Data.Models
 {
-    public class PersistentEnemy
+    public class Acolyte
     {
         [JsonProperty("pid")]
         public string Id { get; private set; }
