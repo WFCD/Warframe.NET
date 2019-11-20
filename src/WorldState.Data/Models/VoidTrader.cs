@@ -1,11 +1,12 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
+
+using Newtonsoft.Json;
 
 using WorldState.Data.Interfaces;
 
 namespace WorldState.Data.Models
 {
-    public class Alert : ITimeSensitive
+    public class VoidTrader : ITimeSensitive
     {
         [JsonProperty]
         public string Id { get; private set; }
@@ -17,9 +18,12 @@ namespace WorldState.Data.Models
         public DateTimeOffset ExpiresAt { get; private set; }
 
         [JsonProperty]
-        public AlertMission Mission { get; private set; }
+        public string Character { get; private set; }
 
         [JsonProperty]
-        public string[] RewardTypes { get; private set; }
+        public string Location { get; private set; }
+
+        [JsonProperty]
+        public BaroInventoryItem[] Inventory { get; private set; }
     }
 }
