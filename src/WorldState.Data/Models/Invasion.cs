@@ -19,10 +19,10 @@ namespace WorldState.Data.Models
         public DateTimeOffset ActivatedAt { get; private set; }
 
         [JsonProperty]
-        public string[] AttackingFaction { get; private set; }
+        public string AttackingFaction { get; private set; }
 
         [JsonProperty]
-        public string[] DefendingFaction { get; private set; }
+        public string DefendingFaction { get; private set; }
 
         [JsonProperty("count")]
         public int CurrentValue { get; private set; }

@@ -1,8 +1,6 @@
 ﻿using Newtonsoft.Json;
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace WorldState.Data.Models
 {
@@ -35,14 +33,12 @@ namespace WorldState.Data.Models
         [JsonProperty("stream")]
         public bool IsStream { get; private set; }
 
+        /*
         [JsonProperty]
         public Dictionary<string, string> Translations { get; private set; }
 
-        /// <summary>
-        /// Returns the primary language of this news instance.
-        /// This is not accurate as it relies on the fact that the first language in the <see cref="Translations"/> is the one used.
-        /// </summary>
         [JsonIgnore]
         public string PrimaryLanguage => Translations?.Keys.FirstOrDefault() ?? "xx";
+        */
     }
 }

@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFrameworks>netstandard1.6;netstandard2.1</TargetFrameworks>
     <RootNamespace>WorldState</RootNamespace>
-    <AssemblyName>WFCD.WorldState</AssemblyName>
+    <AssemblyName>WFCD.WorldState.AsyncEnumerated</AssemblyName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
@@ -15,8 +15,12 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.6'">
+    <PackageReference Include="AsyncEnumerator" Version="4.0.1" />
+  </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\WorldState.Data\WorldState.Data.csproj" />
+    <ProjectReference Include="..\WorldState\WorldState.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,240 +1,310 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
+using WorldState.Data;
 using WorldState.Data.Models;
 
 namespace WorldState
 {
-    public class WorldStateClient : IDisposable
+    public sealed class WorldStateClient : IDisposable
     {
-        public Platform Platform { get; }
+        public Platform Platform     => provider.Platform;
+        public Type     DataProvider => provider.GetType();
 
-        internal HttpClient HttpClient { get; }
-
-        private JsonSerializer serializer;
-        private UriBuilder     builder;
-        private string         platformAsString;
+        internal readonly WorldStateProvider provider;
+        internal readonly JsonSerializer     serializer;
 
         public WorldStateClient(Platform platform)
         {
-            HttpClient = new HttpClient();
-            Platform   = platform;
+            if (!Enum.IsDefined(typeof(Platform), platform)) throw new ArgumentOutOfRangeException(nameof(platform));
 
-            builder          = new UriBuilder(WorldStateEndpoints.Base);
-            platformAsString = PlatformToString(platform);
-            serializer       = JsonSerializer.CreateDefault();
+            provider   = new WarframeStatusProvider(platform);
+            serializer = JsonSerializer.CreateDefault();
         }
 
-        public WorldStateClient(Platform platform, Uri baseUrl)
+        public WorldStateClient(Platform platform, WorldStateProvider streamProvider)
         {
-            if (baseUrl == null) throw new ArgumentNullException(nameof(baseUrl));
+            if (!Enum.IsDefined(typeof(Platform), platform)) throw new ArgumentOutOfRangeException(nameof(platform));
+
+            provider   = streamProvider;
+            serializer = JsonSerializer.CreateDefault();
+        }
+
+        /*
+        public WorldStateClient(Platform platform, CultureInfo culture)
+        {
+            if (culture == null) throw new ArgumentNullException(nameof(culture));
 
             HttpClient = new HttpClient();
-            Platform   = platform;
-
-            builder          = new UriBuilder(baseUrl);
-            platformAsString = PlatformToString(platform);
-            serializer       = JsonSerializer.CreateDefault();
+            HttpClient.DefaultRequestHeaders
+                      .AcceptLanguage
+                      .Add(new StringWithQualityHeaderValue(Utilities.CultureToLanguage(culture)));
         }
-
-        public WorldStateClient(Platform platform, Uri baseUrl, HttpMessageHandler messageHandler)
-        {
-            if (baseUrl == null) throw new ArgumentNullException(nameof(baseUrl));
-
-            HttpClient = new HttpClient(messageHandler);
-            Platform   = platform;
-
-            builder          = new UriBuilder(baseUrl);
-            platformAsString = PlatformToString(platform);
-            serializer       = JsonSerializer.CreateDefault();
-        }
+        */
 
         #region IDisposable
 
-        protected virtual void Dispose(bool isDisposing)
-        {
-            if (!isDisposing) return;
-
-            HttpClient?.Dispose();
-        }
-
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            provider?.Dispose();
         }
 
         #endregion
 
         #region REST APIs
 
-        public Task<Alert[]> Alerts()
+        public async Task<WarframeWorldState> WorldState()
         {
-            builder.Path = platformAsString + WorldStateEndpoints.Alerts;
-            return Get<Alert[]>(builder);
-        }
-
-        public Task<Acolyte[]> Acolytes()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.Acolytes;
-            return Get<Acolyte[]>(builder);
-        }
-
-        public Task<CetusCycle> CetusCycle()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.CetusCycle;
-            return Get<CetusCycle>(builder);
-        }
-
-        public Task<ConclaveChallenge[]> ConclaveChallenges()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.Conclaves;
-            return Get<ConclaveChallenge[]>(builder);
-        }
-
-        public Task<DailyDeal[]> DailyDeals()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.DailyDeal;
-            return Get<DailyDeal[]>(builder);
-        }
-
-        public Task<EarthCycle> EarthCycle()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.EarthRotation;
-            return Get<EarthCycle>(builder);
-        }
-
-        public Task<Event[]> Events()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.Events;
-            return Get<Event[]>(builder);
-        }
-
-        public Task<FlashSale[]> FlashSales()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.FlashSales;
-            return Get<FlashSale[]>(builder);
-        }
-
-        public Task<ConstructionProgress> FleetConstructionProgress()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.Construction;
-            return Get<ConstructionProgress>(builder);
-        }
-
-        public Task<GlobalUpgrade[]> GlobalUpgrades()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.GlobalBoosts;
-            return Get<GlobalUpgrade[]>(builder);
-        }
-
-        public Task<Invasion[]> Invasions()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.Invasions;
-            return Get<Invasion[]>(builder);
-        }
-
-        public Task<News[]> News()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.News;
-            return Get<News[]>(builder);
-        }
-
-        public Task<Nightwave> Nightwave()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.Nightwave;
-            return Get<Nightwave>(builder);
-        }
-
-        public Task<OrbVallisCycle> OrbVallisCycle()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.OrbVallis;
-            return Get<OrbVallisCycle>(builder);
-        }
-
-        public async Task<RivenMod[]> RivenMods()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.Rivens;
-            var json = (await Get<JToken>(builder).ConfigureAwait(false));
-
-            if (json == null) return Array.Empty<RivenMod>();
-
-            var mods = new List<RivenMod>(350);
-            foreach (var category in json.Values())
+            using (var reader = await provider.GetWorldStateStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
             {
-                foreach (var weapon in category.Values())
-                {
-                    foreach (var variant in weapon.Values())
-                    {
-                        if (!variant.HasValues) continue;
+                return serializer.Deserialize<WarframeWorldState>(json);
+            }
+        }
 
-                        mods.Add(variant.ToObject<RivenMod>());
+        public async Task<IEnumerable<Alert>> GetAlertsAsync()
+        {
+            using (var reader = await provider.GetAlertStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<List<Alert>>(json);
+            }
+        }
+
+        public async Task<IEnumerable<Acolyte>> GetAcolytesAsync()
+        {
+            using (var reader = await provider.GetAcolytesStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<List<Acolyte>>(json);
+            }
+        }
+
+        public async Task<CetusCycle> GetCetusCycleAsync()
+        {
+            using (var reader = await provider.GetCetusCycleStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<CetusCycle>(json);
+            }
+        }
+
+        public async Task<IEnumerable<ConclaveChallenge>> GetConclaveChallengesAsync()
+        {
+            using (var reader = await provider.GetConclaveChallengesStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<List<ConclaveChallenge>>(json);
+            }
+        }
+
+        public async Task<IEnumerable<DailyDeal>> GetDailyDealsAsync()
+        {
+            using (var reader = await provider.GetDailyDealsStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<List<DailyDeal>>(json);
+            }
+        }
+
+        public async Task<EarthCycle> GetEarthCycleAsync()
+        {
+            using (var reader = await provider.GetEarthCycleStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<EarthCycle>(json);
+            }
+        }
+
+        public async Task<IEnumerable<Event>> GetEventsAsync()
+        {
+            using (var reader = await provider.GetEventsStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<List<Event>>(json);
+            }
+        }
+
+        public async Task<IEnumerable<FlashSale>> GetFlashSalesAsync()
+        {
+            using (var reader = await provider.GetFlashSalesStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<List<FlashSale>>(json);
+            }
+        }
+
+        public async Task<ConstructionProgress> GetFleetConstructionProgressAsync()
+        {
+            using (var reader = await provider.GetFleetConstructionProgressStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<ConstructionProgress>(json);
+            }
+        }
+
+        public async Task<IEnumerable<GlobalUpgrade>> GetGlobalUpgradesAsync()
+        {
+            using (var reader = await provider.GetGlobalUpgradesStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<List<GlobalUpgrade>>(json);
+            }
+        }
+
+        public async Task<IEnumerable<Invasion>> GetInvasionsAsync()
+        {
+            using (var reader = await provider.GetInvasionsStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<List<Invasion>>(json);
+            }
+        }
+
+        public async Task<IEnumerable<News>> GetNewsAsync()
+        {
+            using (var reader = await provider.GetNewsStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<List<News>>(json);
+            }
+        }
+
+        public async Task<Nightwave> GetNightwaveAsync()
+        {
+            using (var reader = await provider.GetNightwaveStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<Nightwave>(json);
+            }
+        }
+
+        public async Task<OrbVallisCycle> GetOrbVallisCycleAsync()
+        {
+            using (var reader = await provider.GetOrbVallisCycleStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<OrbVallisCycle>(json);
+            }
+        }
+
+        public async Task<IEnumerable<RivenMod>> GetRivenModsAsync()
+        {
+            using (var reader = await provider.GetRivenModsStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                var rivens = new List<RivenMod>(400);
+
+                // Riven stats API is differently modeled as each mod variant is put under a dynamic key.
+                // This flag indicates that a key-check has completed and the value SHOULD be deserialized.
+                var shouldDeserialize = false;
+
+                while (await json.ReadAsync().ConfigureAwait(false))
+                {
+                    // We are about to read the value of a known key, which may contain mod stats.
+                    if (shouldDeserialize)
+                    {
+                        // Double-check for null or key name collision.
+                        if (json.TokenType == JsonToken.StartObject)
+                        {
+                            // Deserialize model immediately if all checks passed.
+                            rivens.Add(serializer.Deserialize<RivenMod>(json));
+                        }
+
+                        // Continue search for the next mod.
+                        shouldDeserialize = false;
+                        continue;
+                    }
+
+                    // #DontKnowDontCare
+                    if (json.TokenType != JsonToken.PropertyName ||
+                        json.ValueType != typeof(string))
+                    {
+                        continue;
+                    }
+
+                    // Read the key name to determine if the value (will read in the next loop) may contain mod stats.
+                    // Currently recognizes:
+                    // (1) "rerolled" key whose value is a JSON object.
+                    // (2) "unrolled" key whose value is a JSON object.
+                    var name = (string) json.Value;
+                    if (name.Equals("unrolled", StringComparison.OrdinalIgnoreCase) ||
+                        name.Equals("rerolled", StringComparison.OrdinalIgnoreCase))
+                    {
+                        shouldDeserialize = true;
                     }
                 }
-            }
 
-            return mods.ToArray();
-        }
-
-        public Task<Simaris> SimarisSanctuary()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.Sanctuary;
-            return Get<Simaris>(builder);
-        }
-
-        public Task<Sortie[]> Sorties()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.Sortie;
-            return Get<Sortie[]>(builder);
-        }
-
-        public Task<SyndicateMission[]> SyndicateMissions()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.SyndicateMissions;
-            return Get<SyndicateMission[]>(builder);
-        }
-
-        public Task<Fissure[]> VoidFissureMissions()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.VoidMissions;
-            return Get<Fissure[]>(builder);
-        }
-
-        public Task<VoidTrader> VoidTrader()
-        {
-            builder.Path = platformAsString + WorldStateEndpoints.VoidTrader;
-            return Get<VoidTrader>(builder);
-        }
-
-        #endregion
-
-        #region Helpers
-
-        private static string PlatformToString(Platform platform)
-        {
-            switch (platform)
-            {
-            case Platform.PC:      return "/pc";
-            case Platform.PS4:     return "/ps4";
-            case Platform.XboxOne: return "/xb1";
-            case Platform.Switch:  return "/swi";
-            default:               throw new ArgumentOutOfRangeException(nameof(platform));
+                return rivens;
             }
         }
 
-        private async Task<T> Get<T>(UriBuilder uri)
+        public async Task<Simaris> GetSimarisSanctuaryAsync()
         {
-            using (var stream = await HttpClient.GetStreamAsync(uri.Uri)
-                                                .ConfigureAwait(false))
-            using (var reader = new JsonTextReader(new StreamReader(stream, true)))
+            using (var reader = await provider.GetSimarisSanctuaryStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
             {
-                return serializer.Deserialize<T>(reader);
+                return serializer.Deserialize<Simaris>(json);
+            }
+        }
+
+        public async Task<Sortie> GetSortieAsync()
+        {
+            using (var reader = await provider.GetSortieStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<Sortie>(json);
+            }
+        }
+
+        public async Task<IEnumerable<SyndicateMission>> GetSyndicateMissionsAsync()
+        {
+            using (var reader = await provider.GetSyndicateMissionsStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<List<SyndicateMission>>(json);
+            }
+        }
+
+        public async Task<IEnumerable<Fissure>> GetVoidFissureMissionsAsync()
+        {
+            using (var reader = await provider.GetVoidFissureMissionsStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<List<Fissure>>(json);
+            }
+        }
+
+        public async Task<VoidTrader> GetVoidTraderAsync()
+        {
+            using (var reader = await provider.GetVoidTraderStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<VoidTrader>(json);
             }
         }
 
