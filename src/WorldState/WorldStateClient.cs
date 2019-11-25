@@ -56,7 +56,7 @@ namespace WorldState
 
         #region REST APIs
 
-        public async Task<WarframeWorldState> WorldState()
+        public async Task<WarframeWorldState> GetWorldStateAsync()
         {
             using (var reader = await provider.GetWorldStateStreamAsync()
                                               .ConfigureAwait(false))
