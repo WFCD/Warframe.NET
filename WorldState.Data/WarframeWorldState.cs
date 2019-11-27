@@ -45,7 +45,7 @@ namespace WorldState.Data
         public DailyDeal[] DailyDeals { get; private set; }
 
         [JsonProperty("simaris")]
-        public Simaris SimarisSanctuary { get; private set; }
+        public Simaris SimarisTarget { get; private set; }
 
         [JsonProperty]
         public ConclaveChallenge[] ConclaveChallenges { get; private set; }
@@ -60,7 +60,7 @@ namespace WorldState.Data
         public CetusCycle CetusCycle { get; private set; }
 
         [JsonProperty("constructionProgress")]
-        public ConstructionProgress FleetConstructionProgress { get; private set; }
+        public ConstructionStatus ConstructionStatus { get; private set; }
 
         [JsonProperty("vallisCycle")]
         public OrbVallisCycle OrbVallisCycle { get; private set; }

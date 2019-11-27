@@ -2,6 +2,9 @@
 
 namespace WorldState
 {
+    /// <summary>
+    /// WarframeStat.us API endpoints, including constants and helpers for URL building.
+    /// </summary>
     public static class WorldStateEndpoints
     {
         public static Uri Base { get; } = new Uri("https://api.warframestat.us");

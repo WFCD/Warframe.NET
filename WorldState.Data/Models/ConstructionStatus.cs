@@ -2,7 +2,7 @@
 
 namespace WorldState.Data.Models
 {
-    public class ConstructionProgress
+    public class ConstructionStatus
     {
         [JsonProperty]
         public string Id { get; private set; }

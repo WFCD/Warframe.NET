@@ -106,6 +106,16 @@ namespace WorldState
             }
         }
 
+        public async Task<ConstructionStatus> GetConstructionStatusAsync()
+        {
+            using (var reader = await provider.GetConstructionStatusStreamAsync()
+                                              .ConfigureAwait(false))
+            using (var json = new JsonTextReader(reader))
+            {
+                return serializer.Deserialize<ConstructionStatus>(json);
+            }
+        }
+
         public async Task<IEnumerable<DailyDeal>> GetDailyDealsAsync()
         {
             using (var reader = await provider.GetDailyDealsStreamAsync()
@@ -143,16 +153,6 @@ namespace WorldState
             using (var json = new JsonTextReader(reader))
             {
                 return serializer.Deserialize<List<FlashSale>>(json);
-            }
-        }
-
-        public async Task<ConstructionProgress> GetFleetConstructionProgressAsync()
-        {
-            using (var reader = await provider.GetFleetConstructionProgressStreamAsync()
-                                              .ConfigureAwait(false))
-            using (var json = new JsonTextReader(reader))
-            {
-                return serializer.Deserialize<ConstructionProgress>(json);
             }
         }
 
@@ -258,9 +258,9 @@ namespace WorldState
             }
         }
 
-        public async Task<Simaris> GetSimarisSanctuaryAsync()
+        public async Task<Simaris> GetSimarisTargetAsync()
         {
-            using (var reader = await provider.GetSimarisSanctuaryStreamAsync()
+            using (var reader = await provider.GetSimarisTargetStreamAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -280,7 +280,7 @@ namespace WorldState
 
         public async Task<IEnumerable<SyndicateMission>> GetSyndicateMissionsAsync()
         {
-            using (var reader = await provider.GetSyndicateMissionsStreamAsync()
+            using (var reader = await provider.GetSyndicateStreamAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {

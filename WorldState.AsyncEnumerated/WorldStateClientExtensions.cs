@@ -166,7 +166,7 @@ namespace WorldState
         {
             return new AsyncEnumerable<SyndicateMission>(async yield =>
             {
-                using (var reader = await client.provider.GetSyndicateMissionsStreamAsync()
+                using (var reader = await client.provider.GetSyndicateStreamAsync()
                                                 .ConfigureAwait(false))
                 {
                     await Enumerate(client.serializer, yield, reader).ConfigureAwait(false);
@@ -288,7 +288,7 @@ namespace WorldState
         public static IAsyncEnumerable<SyndicateMission> EnumerateSyndicateMissionsAsync(this WorldStateClient client)
         {
             return Enumerate<SyndicateMission>(client.serializer,
-                                               () => client.provider.GetSyndicateMissionsStreamAsync());
+                                               () => client.provider.GetSyndicateStreamAsync());
         }
 
         public static IAsyncEnumerable<Fissure> EnumerateVoidFissureMissionsAsync(this WorldStateClient client)

@@ -6,19 +6,43 @@ using System.Threading.Tasks;
 namespace WorldState
 {
     /// <summary>
-    /// A <see cref="WorldStateProvider"/> that uses online data from <a href="https://warframestat.us/">warframestat.us</a>.
+    /// A <see cref="WorldStateProvider"/> that uses online data from <a href="https://docs.warframestat.us/">docs.warframestat.us</a>.
     /// </summary>
     public sealed class WarframeStatusProvider : WorldStateProvider
     {
+        /// <summary>
+        /// Reusable <see cref="HttpClient"/> that facilitates HTTP exchanges with <a href="https://docs.warframestat.us/">docs.warframestat.us</a>.
+        /// </summary>
         internal HttpClient Client { get; }
 
+        /// <summary>
+        /// The root URL of <a href="https://docs.warframestat.us/">docs.warframestat.us</a> or its mirror.
+        /// </summary>
         private readonly Uri baseUri;
 
+        /// <summary>
+        /// Instantiate <see cref="WarframeStatusProvider"/> for the given platform.
+        /// </summary>
+        /// <param name="platform">
+        /// <para>The <see cref="Platform"/> to request World State for.</para>
+        /// <para>Once instantiated, the platform will be fixed in this <see cref="WorldStateProvider"/>.
+        /// To obtain World State for another platform, create the same provider with a different <see cref="Platform"/>.</para>
+        /// </param>
         public WarframeStatusProvider(Platform platform) : base(platform)
         {
             baseUri = WorldStateEndpoints.Base;
         }
 
+        /// <summary>
+        /// Instantiate <see cref="WarframeStatusProvider"/> with given parameters. See documentation on each parameter.
+        /// </summary>
+        /// <param name="platform">
+        /// <para>The <see cref="Platform"/> to request World State for.</para>
+        /// <para>Once instantiated, the platform will be fixed in this <see cref="WorldStateProvider"/>.
+        /// To obtain World State for another platform, create the same provider with a different <see cref="Platform"/>.</para>
+        /// </param>
+        /// <param name="mirror">A root URL that may differ from <see cref="WorldStateEndpoints.Base"/>.</param>
+        /// <param name="handler">Custom handler for HTTP requests.</param>
         public WarframeStatusProvider(Platform platform, Uri mirror, HttpMessageHandler handler) : base(platform)
         {
             baseUri = mirror;
@@ -79,7 +103,7 @@ namespace WorldState
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.FlashSales));
         }
 
-        public override Task<StreamReader> GetFleetConstructionProgressStreamAsync()
+        public override Task<StreamReader> GetConstructionStatusStreamAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.Construction));
@@ -121,7 +145,7 @@ namespace WorldState
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.Rivens));
         }
 
-        public override Task<StreamReader> GetSimarisSanctuaryStreamAsync()
+        public override Task<StreamReader> GetSimarisTargetStreamAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.Sanctuary));
@@ -133,7 +157,7 @@ namespace WorldState
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.Sorties));
         }
 
-        public override Task<StreamReader> GetSyndicateMissionsStreamAsync()
+        public override Task<StreamReader> GetSyndicateStreamAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.SyndicateMissions));
