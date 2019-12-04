@@ -49,127 +49,127 @@ namespace WorldState
             Client  = new HttpClient(handler);
         }
 
-        public override Task<StreamReader> GetWorldStateStreamAsync()
+        public override Task<StreamReader> StreamWorldStateAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform)));
         }
 
-        public override Task<StreamReader> GetAlertStreamAsync()
+        public override Task<StreamReader> StreamAlertsAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.Alerts));
         }
 
-        public override Task<StreamReader> GetAcolytesStreamAsync()
+        public override Task<StreamReader> StreamAcolytesAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.Acolytes));
         }
 
-        public override Task<StreamReader> GetCetusCycleStreamAsync()
+        public override Task<StreamReader> StreamCetusCycleAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.CetusCycle));
         }
 
-        public override Task<StreamReader> GetConclaveChallengesStreamAsync()
+        public override Task<StreamReader> StreamConclaveChallengesAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.ConclaveChallenges));
         }
 
-        public override Task<StreamReader> GetDailyDealsStreamAsync()
+        public override Task<StreamReader> StreamDailyDealsAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.DailyDeals));
         }
 
-        public override Task<StreamReader> GetEarthCycleStreamAsync()
+        public override Task<StreamReader> StreamEarthCycleAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.EarthRotation));
         }
 
-        public override Task<StreamReader> GetEventsStreamAsync()
+        public override Task<StreamReader> StreamEventsAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.Events));
         }
 
-        public override Task<StreamReader> GetFlashSalesStreamAsync()
+        public override Task<StreamReader> StreamFlashSalesAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.FlashSales));
         }
 
-        public override Task<StreamReader> GetConstructionStatusStreamAsync()
+        public override Task<StreamReader> StreamConstructionStatusAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.Construction));
         }
 
-        public override Task<StreamReader> GetGlobalUpgradesStreamAsync()
+        public override Task<StreamReader> StreamGlobalUpgradesAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.GlobalBoosts));
         }
 
-        public override Task<StreamReader> GetInvasionsStreamAsync()
+        public override Task<StreamReader> StreamInvasionsAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.Invasions));
         }
 
-        public override Task<StreamReader> GetNewsStreamAsync()
+        public override Task<StreamReader> StreamNewsAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.News));
         }
 
-        public override Task<StreamReader> GetNightwaveStreamAsync()
+        public override Task<StreamReader> StreamNightwaveAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.Nightwave));
         }
 
-        public override Task<StreamReader> GetOrbVallisCycleStreamAsync()
+        public override Task<StreamReader> StreamOrbVallisCycleAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.OrbVallis));
         }
 
-        public override Task<StreamReader> GetRivenModsStreamAsync()
+        public override Task<StreamReader> StreamRivenModsAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.Rivens));
         }
 
-        public override Task<StreamReader> GetSimarisTargetStreamAsync()
+        public override Task<StreamReader> StreamSimarisTargetAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.Sanctuary));
         }
 
-        public override Task<StreamReader> GetSortieStreamAsync()
+        public override Task<StreamReader> StreamSortieAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.Sorties));
         }
 
-        public override Task<StreamReader> GetSyndicateStreamAsync()
+        public override Task<StreamReader> StreamSyndicateMissionsAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.SyndicateMissions));
         }
 
-        public override Task<StreamReader> GetVoidFissureMissionsStreamAsync()
+        public override Task<StreamReader> StreamVoidFissureMissionsAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.VoidMissions));
         }
 
-        public override Task<StreamReader> GetVoidTraderStreamAsync()
+        public override Task<StreamReader> StreamVoidTraderAsync()
         {
             return Get(new Uri(baseUri,
                                WorldStateEndpoints.PlatformToPath(Platform) + WorldStateEndpoints.VoidTrader));

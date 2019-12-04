@@ -58,7 +58,7 @@ namespace WorldState
 
         public async Task<WarframeWorldState> GetWorldStateAsync()
         {
-            using (var reader = await provider.GetWorldStateStreamAsync()
+            using (var reader = await provider.StreamWorldStateAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -68,7 +68,7 @@ namespace WorldState
 
         public async Task<IEnumerable<Alert>> GetAlertsAsync()
         {
-            using (var reader = await provider.GetAlertStreamAsync()
+            using (var reader = await provider.StreamAlertsAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -78,7 +78,7 @@ namespace WorldState
 
         public async Task<IEnumerable<Acolyte>> GetAcolytesAsync()
         {
-            using (var reader = await provider.GetAcolytesStreamAsync()
+            using (var reader = await provider.StreamAcolytesAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -88,7 +88,7 @@ namespace WorldState
 
         public async Task<CetusCycle> GetCetusCycleAsync()
         {
-            using (var reader = await provider.GetCetusCycleStreamAsync()
+            using (var reader = await provider.StreamCetusCycleAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -98,7 +98,7 @@ namespace WorldState
 
         public async Task<IEnumerable<ConclaveChallenge>> GetConclaveChallengesAsync()
         {
-            using (var reader = await provider.GetConclaveChallengesStreamAsync()
+            using (var reader = await provider.StreamConclaveChallengesAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -108,7 +108,7 @@ namespace WorldState
 
         public async Task<ConstructionStatus> GetConstructionStatusAsync()
         {
-            using (var reader = await provider.GetConstructionStatusStreamAsync()
+            using (var reader = await provider.StreamConstructionStatusAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -118,7 +118,7 @@ namespace WorldState
 
         public async Task<IEnumerable<DailyDeal>> GetDailyDealsAsync()
         {
-            using (var reader = await provider.GetDailyDealsStreamAsync()
+            using (var reader = await provider.StreamDailyDealsAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -128,7 +128,7 @@ namespace WorldState
 
         public async Task<EarthCycle> GetEarthCycleAsync()
         {
-            using (var reader = await provider.GetEarthCycleStreamAsync()
+            using (var reader = await provider.StreamEarthCycleAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -138,7 +138,7 @@ namespace WorldState
 
         public async Task<IEnumerable<Event>> GetEventsAsync()
         {
-            using (var reader = await provider.GetEventsStreamAsync()
+            using (var reader = await provider.StreamEventsAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -148,7 +148,7 @@ namespace WorldState
 
         public async Task<IEnumerable<FlashSale>> GetFlashSalesAsync()
         {
-            using (var reader = await provider.GetFlashSalesStreamAsync()
+            using (var reader = await provider.StreamFlashSalesAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -158,7 +158,7 @@ namespace WorldState
 
         public async Task<IEnumerable<GlobalUpgrade>> GetGlobalUpgradesAsync()
         {
-            using (var reader = await provider.GetGlobalUpgradesStreamAsync()
+            using (var reader = await provider.StreamGlobalUpgradesAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -168,7 +168,7 @@ namespace WorldState
 
         public async Task<IEnumerable<Invasion>> GetInvasionsAsync()
         {
-            using (var reader = await provider.GetInvasionsStreamAsync()
+            using (var reader = await provider.StreamInvasionsAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -178,7 +178,7 @@ namespace WorldState
 
         public async Task<IEnumerable<News>> GetNewsAsync()
         {
-            using (var reader = await provider.GetNewsStreamAsync()
+            using (var reader = await provider.StreamNewsAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -188,7 +188,7 @@ namespace WorldState
 
         public async Task<Nightwave> GetNightwaveAsync()
         {
-            using (var reader = await provider.GetNightwaveStreamAsync()
+            using (var reader = await provider.StreamNightwaveAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -198,7 +198,7 @@ namespace WorldState
 
         public async Task<OrbVallisCycle> GetOrbVallisCycleAsync()
         {
-            using (var reader = await provider.GetOrbVallisCycleStreamAsync()
+            using (var reader = await provider.StreamOrbVallisCycleAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -208,7 +208,7 @@ namespace WorldState
 
         public async Task<IEnumerable<RivenMod>> GetRivenModsAsync()
         {
-            using (var reader = await provider.GetRivenModsStreamAsync()
+            using (var reader = await provider.StreamRivenModsAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -260,7 +260,7 @@ namespace WorldState
 
         public async Task<Simaris> GetSimarisTargetAsync()
         {
-            using (var reader = await provider.GetSimarisTargetStreamAsync()
+            using (var reader = await provider.StreamSimarisTargetAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -270,7 +270,7 @@ namespace WorldState
 
         public async Task<Sortie> GetSortieAsync()
         {
-            using (var reader = await provider.GetSortieStreamAsync()
+            using (var reader = await provider.StreamSortieAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -280,7 +280,7 @@ namespace WorldState
 
         public async Task<IEnumerable<SyndicateMission>> GetSyndicateMissionsAsync()
         {
-            using (var reader = await provider.GetSyndicateStreamAsync()
+            using (var reader = await provider.StreamSyndicateMissionsAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -290,7 +290,7 @@ namespace WorldState
 
         public async Task<IEnumerable<Fissure>> GetVoidFissureMissionsAsync()
         {
-            using (var reader = await provider.GetVoidFissureMissionsStreamAsync()
+            using (var reader = await provider.StreamVoidFissureMissionsAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {
@@ -300,7 +300,7 @@ namespace WorldState
 
         public async Task<VoidTrader> GetVoidTraderAsync()
         {
-            using (var reader = await provider.GetVoidTraderStreamAsync()
+            using (var reader = await provider.StreamVoidTraderAsync()
                                               .ConfigureAwait(false))
             using (var json = new JsonTextReader(reader))
             {

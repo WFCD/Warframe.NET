@@ -10,7 +10,7 @@ namespace WorldState
     /// This class must be inherited; and the implementation must operate on JSONs that conform to schemas documented on
     /// <a href="https://docs.warframestat.us/">docs.warframestat.us</a>.</para>
     /// <para>For a sample working implementation, see <see cref="WarframeStatusProvider"/>.
-    /// For an offline/testable implementation, see <see cref="LocalWorldStateProvider"/>.</para>
+    /// For an offline/testable implementation, see <see cref="WorldStateSnapshotProvider"/>.</para>
     /// </summary>
     public abstract class WorldStateProvider : IDisposable
     {
@@ -34,7 +34,7 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An ongoing <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetWorldStateStreamAsync();
+        public abstract Task<StreamReader> StreamWorldStateAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only
@@ -42,7 +42,7 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetAlertStreamAsync();
+        public abstract Task<StreamReader> StreamAlertsAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only
@@ -50,7 +50,7 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetAcolytesStreamAsync();
+        public abstract Task<StreamReader> StreamAcolytesAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only day/night cycle of
@@ -58,7 +58,7 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetCetusCycleStreamAsync();
+        public abstract Task<StreamReader> StreamCetusCycleAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only
@@ -66,7 +66,7 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetConclaveChallengesStreamAsync();
+        public abstract Task<StreamReader> StreamConclaveChallengesAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only
@@ -74,7 +74,7 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetDailyDealsStreamAsync();
+        public abstract Task<StreamReader> StreamDailyDealsAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only day/night cycle of
@@ -82,7 +82,7 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetEarthCycleStreamAsync();
+        public abstract Task<StreamReader> StreamEarthCycleAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only large-scale
@@ -90,7 +90,7 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetEventsStreamAsync();
+        public abstract Task<StreamReader> StreamEventsAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only
@@ -98,7 +98,7 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetFlashSalesStreamAsync();
+        public abstract Task<StreamReader> StreamFlashSalesAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only
@@ -106,14 +106,14 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetConstructionStatusStreamAsync();
+        public abstract Task<StreamReader> StreamConstructionStatusAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only global boost,
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetGlobalUpgradesStreamAsync();
+        public abstract Task<StreamReader> StreamGlobalUpgradesAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only
@@ -121,14 +121,14 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetInvasionsStreamAsync();
+        public abstract Task<StreamReader> StreamInvasionsAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only official announcements and updates,
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetNewsStreamAsync();
+        public abstract Task<StreamReader> StreamNewsAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only
@@ -136,7 +136,7 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetNightwaveStreamAsync();
+        public abstract Task<StreamReader> StreamNightwaveAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only warm/cold cycle of
@@ -144,7 +144,7 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetOrbVallisCycleStreamAsync();
+        public abstract Task<StreamReader> StreamOrbVallisCycleAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only statistics of
@@ -152,7 +152,7 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetRivenModsStreamAsync();
+        public abstract Task<StreamReader> StreamRivenModsAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only
@@ -160,7 +160,7 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetSimarisTargetStreamAsync();
+        public abstract Task<StreamReader> StreamSimarisTargetAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only
@@ -168,7 +168,7 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetSortieStreamAsync();
+        public abstract Task<StreamReader> StreamSortieAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only
@@ -176,7 +176,7 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetSyndicateStreamAsync();
+        public abstract Task<StreamReader> StreamSyndicateMissionsAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only
@@ -184,7 +184,7 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetVoidFissureMissionsStreamAsync();
+        public abstract Task<StreamReader> StreamVoidFissureMissionsAsync();
 
         /// <summary>
         /// <para>Requests JSON that contains only
@@ -192,7 +192,7 @@ namespace WorldState
         /// then creates a <see cref="StreamReader"/> that reads over JSON text.</para>
         /// </summary>
         /// <returns>An async <see cref="Task"/> that returns the <see cref="StreamReader"/> at completion.</returns>
-        public abstract Task<StreamReader> GetVoidTraderStreamAsync();
+        public abstract Task<StreamReader> StreamVoidTraderAsync();
 
         #region IDisposale
 
@@ -212,7 +212,7 @@ namespace WorldState
         /// <summary>
         /// <para>Dispose method for <see cref="IDisposable"/> interface
         /// where resource disposal is delegated to <see cref="Dispose(bool)"/>.</para>
-        /// <para>DO NOT provide implementation for, or hide this method in a derived class!
+        /// <para>DO NOT override (provide implementation for), or hide this method in a derived class!
         /// Use <see cref="Dispose(bool)"/> instead.</para>
         /// </summary>
         public void Dispose()

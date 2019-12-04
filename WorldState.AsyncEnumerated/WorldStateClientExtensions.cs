@@ -25,7 +25,7 @@ namespace WorldState
         {
             return new AsyncEnumerable<Alert>(async yield =>
             {
-                using (var reader = await client.provider.GetAlertStreamAsync().ConfigureAwait(false))
+                using (var reader = await client.provider.StreamAlertsAsync().ConfigureAwait(false))
                 {
                     await Enumerate(client.serializer, yield, reader).ConfigureAwait(false);
                 }
@@ -36,7 +36,7 @@ namespace WorldState
         {
             return new AsyncEnumerable<Acolyte>(async yield =>
             {
-                using (var reader = await client.provider.GetAcolytesStreamAsync().ConfigureAwait(false))
+                using (var reader = await client.provider.StreamAcolytesAsync().ConfigureAwait(false))
                 {
                     await Enumerate(client.serializer, yield, reader).ConfigureAwait(false);
                 }
@@ -47,7 +47,7 @@ namespace WorldState
         {
             return new AsyncEnumerable<ConclaveChallenge>(async yield =>
             {
-                using (var reader = await client.provider.GetConclaveChallengesStreamAsync()
+                using (var reader = await client.provider.StreamConclaveChallengesAsync()
                                                 .ConfigureAwait(false))
                 {
                     await Enumerate(client.serializer, yield, reader).ConfigureAwait(false);
@@ -59,7 +59,7 @@ namespace WorldState
         {
             return new AsyncEnumerable<DailyDeal>(async yield =>
             {
-                using (var reader = await client.provider.GetDailyDealsStreamAsync().ConfigureAwait(false))
+                using (var reader = await client.provider.StreamDailyDealsAsync().ConfigureAwait(false))
                 {
                     await Enumerate(client.serializer, yield, reader).ConfigureAwait(false);
                 }
@@ -70,7 +70,7 @@ namespace WorldState
         {
             return new AsyncEnumerable<Event>(async yield =>
             {
-                using (var reader = await client.provider.GetEventsStreamAsync().ConfigureAwait(false))
+                using (var reader = await client.provider.StreamEventsAsync().ConfigureAwait(false))
                 {
                     await Enumerate(client.serializer, yield, reader).ConfigureAwait(false);
                 }
@@ -81,7 +81,7 @@ namespace WorldState
         {
             return new AsyncEnumerable<GlobalUpgrade>(async yield =>
             {
-                using (var reader = await client.provider.GetGlobalUpgradesStreamAsync().ConfigureAwait(false))
+                using (var reader = await client.provider.StreamGlobalUpgradesAsync().ConfigureAwait(false))
                 {
                     await Enumerate(client.serializer, yield, reader).ConfigureAwait(false);
                 }
@@ -92,7 +92,7 @@ namespace WorldState
         {
             return new AsyncEnumerable<Invasion>(async yield =>
             {
-                using (var reader = await client.provider.GetInvasionsStreamAsync().ConfigureAwait(false))
+                using (var reader = await client.provider.StreamInvasionsAsync().ConfigureAwait(false))
                 {
                     await Enumerate(client.serializer, yield, reader).ConfigureAwait(false);
                 }
@@ -103,7 +103,7 @@ namespace WorldState
         {
             return new AsyncEnumerable<News>(async yield =>
             {
-                using (var reader = await client.provider.GetNewsStreamAsync().ConfigureAwait(false))
+                using (var reader = await client.provider.StreamNewsAsync().ConfigureAwait(false))
                 {
                     await Enumerate(client.serializer, yield, reader).ConfigureAwait(false);
                 }
@@ -114,7 +114,7 @@ namespace WorldState
         {
             return new AsyncEnumerable<RivenMod>(async yield =>
             {
-                using (var reader = await client.provider.GetRivenModsStreamAsync()
+                using (var reader = await client.provider.StreamRivenModsAsync()
                                                 .ConfigureAwait(false))
                 using (var json = new JsonTextReader(reader))
                 {
@@ -166,7 +166,7 @@ namespace WorldState
         {
             return new AsyncEnumerable<SyndicateMission>(async yield =>
             {
-                using (var reader = await client.provider.GetSyndicateStreamAsync()
+                using (var reader = await client.provider.StreamSyndicateMissionsAsync()
                                                 .ConfigureAwait(false))
                 {
                     await Enumerate(client.serializer, yield, reader).ConfigureAwait(false);
@@ -178,7 +178,7 @@ namespace WorldState
         {
             return new AsyncEnumerable<Fissure>(async yield =>
             {
-                using (var reader = await client.provider.GetVoidFissureMissionsStreamAsync()
+                using (var reader = await client.provider.StreamVoidFissureMissionsAsync()
                                                 .ConfigureAwait(false))
                 {
                     await Enumerate(client.serializer, yield, reader).ConfigureAwait(false);
@@ -194,53 +194,53 @@ namespace WorldState
 
         public static IAsyncEnumerable<Alert> EnumerateAlertsAsync(this WorldStateClient client)
         {
-            return Enumerate<Alert>(client.serializer, () => client.provider.GetAlertStreamAsync());
+            return Enumerate<Alert>(client.serializer, () => client.provider.StreamAlertsAsync());
         }
 
         public static IAsyncEnumerable<Acolyte> EnumerateAcolytesAsync(this WorldStateClient client)
         {
-            return Enumerate<Acolyte>(client.serializer, () => client.provider.GetAcolytesStreamAsync());
+            return Enumerate<Acolyte>(client.serializer, () => client.provider.StreamAcolytesAsync());
         }
 
         public static IAsyncEnumerable<ConclaveChallenge> EnumerateConclaveChallengesAsync(this WorldStateClient client)
         {
             return Enumerate<ConclaveChallenge>(client.serializer,
-                                                () => client.provider.GetConclaveChallengesStreamAsync());
+                                                () => client.provider.StreamConclaveChallengesAsync());
         }
 
         public static IAsyncEnumerable<DailyDeal> EnumerateDailyDealsAsync(this WorldStateClient client)
         {
-            return Enumerate<DailyDeal>(client.serializer, () => client.provider.GetDailyDealsStreamAsync());
+            return Enumerate<DailyDeal>(client.serializer, () => client.provider.StreamDailyDealsAsync());
         }
 
         public static IAsyncEnumerable<Event> EnumerateEventsAsync(this WorldStateClient client)
         {
-            return Enumerate<Event>(client.serializer, () => client.provider.GetEventsStreamAsync());
+            return Enumerate<Event>(client.serializer, () => client.provider.StreamEventsAsync());
         }
 
         public static IAsyncEnumerable<FlashSale> EnumerateFlashSalesAsync(this WorldStateClient client)
         {
-            return Enumerate<FlashSale>(client.serializer, () => client.provider.GetFlashSalesStreamAsync());
+            return Enumerate<FlashSale>(client.serializer, () => client.provider.StreamFlashSalesAsync());
         }
 
         public static IAsyncEnumerable<GlobalUpgrade> EnumerateGlobalUpgradesAsync(this WorldStateClient client)
         {
-            return Enumerate<GlobalUpgrade>(client.serializer, () => client.provider.GetGlobalUpgradesStreamAsync());
+            return Enumerate<GlobalUpgrade>(client.serializer, () => client.provider.StreamGlobalUpgradesAsync());
         }
 
         public static IAsyncEnumerable<Invasion> EnumerateInvasionsAsync(this WorldStateClient client)
         {
-            return Enumerate<Invasion>(client.serializer, () => client.provider.GetInvasionsStreamAsync());
+            return Enumerate<Invasion>(client.serializer, () => client.provider.StreamInvasionsAsync());
         }
 
         public static IAsyncEnumerable<News> EnumerateNewsAsync(this WorldStateClient client)
         {
-            return Enumerate<News>(client.serializer, () => client.provider.GetNewsStreamAsync());
+            return Enumerate<News>(client.serializer, () => client.provider.StreamNewsAsync());
         }
 
         public static async IAsyncEnumerable<RivenMod> EnumerateRivenModsAsync(this WorldStateClient client)
         {
-            using var reader = await client.provider.GetRivenModsStreamAsync()
+            using var reader = await client.provider.StreamRivenModsAsync()
                                            .ConfigureAwait(false);
             using var json = new JsonTextReader(reader);
 
@@ -288,12 +288,12 @@ namespace WorldState
         public static IAsyncEnumerable<SyndicateMission> EnumerateSyndicateMissionsAsync(this WorldStateClient client)
         {
             return Enumerate<SyndicateMission>(client.serializer,
-                                               () => client.provider.GetSyndicateStreamAsync());
+                                               () => client.provider.StreamSyndicateMissionsAsync());
         }
 
         public static IAsyncEnumerable<Fissure> EnumerateVoidFissureMissionsAsync(this WorldStateClient client)
         {
-            return Enumerate<Fissure>(client.serializer, () => client.provider.GetVoidFissureMissionsStreamAsync());
+            return Enumerate<Fissure>(client.serializer, () => client.provider.StreamVoidFissureMissionsAsync());
         }
 
         #endregion
