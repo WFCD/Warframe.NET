@@ -28,6 +28,6 @@
         /// <summary>
         /// List of correct platforms.
         /// </summary>
-        public static string[] List = { PC, PSFOUR, XBOXONE, SWITCH };
+        public static string[] List { get; } = {PC, PSFOUR, XBOXONE, SWITCH};
     }
 }

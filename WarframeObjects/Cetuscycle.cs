@@ -1,3 +1,5 @@
+using System;
+
 namespace WarframeNET
 {
     public class CetusCycle
