@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace WorldState.Data.Models
+namespace WarframeNet.WorldState
 {
     public class News
     {

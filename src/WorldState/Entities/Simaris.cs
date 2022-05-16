@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace WorldState.Data.Models
+namespace WarframeNet.WorldState
 {
     public class Simaris
     {

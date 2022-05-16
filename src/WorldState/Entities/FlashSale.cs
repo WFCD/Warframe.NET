@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using System;
 
-namespace WorldState.Data.Models
+namespace WarframeNet.WorldState
 {
 	public class FlashSale
 	{
