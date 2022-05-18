@@ -12,12 +12,12 @@ namespace WorldState.Entities
         /// A short description of the error.
         /// </summary>
         [JsonProperty("error")]
-        public string Error { get; private set; }
+        public string Error { get; init; }
 
         /// <summary>
         /// The HTTP status code that was returned alongside the error.
         /// </summary>
         [JsonProperty("code")]
-        public HttpStatusCode Code { get; private set; }
+        public HttpStatusCode Code { get; init; }
     }
 }

@@ -13,7 +13,7 @@ namespace WorldState.Utilities
         private static readonly Dictionary<WorldStatePlatform, string> PlatformEndpointMap = new();
         private static readonly Dictionary<WorldStateLanguage, string> LanguageHeaderMap = new();
         private static readonly Dictionary<WorldStateEndpoint, string> EndpointPathMap = new();
-        
+
         /// <summary>
         /// Retrieves the endpoint specifier for the given platform. 
         /// </summary>

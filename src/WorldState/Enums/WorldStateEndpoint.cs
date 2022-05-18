@@ -5,6 +5,7 @@ namespace WorldState.Enums
     /// <summary>
     /// List of available endpoints to retrieve data from.
     /// </summary>
+    // TODO: Add doc link to endpoint entity class for every field below.
     public enum WorldStateEndpoint
     {
         /// <summary>

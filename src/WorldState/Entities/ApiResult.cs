@@ -1,23 +1,56 @@
-﻿using System.Net;
-using Newtonsoft.Json;
+﻿using System;
 
 namespace WorldState.Entities
 {
     /// <summary>
-    /// Generally returned by the warframestat.us API when no error or results need to be returned.
+    /// Wrapper for data returned by the API. Handles cases where an error was returned by the API.
     /// </summary>
-    public class ApiResult
+    /// <typeparam name="T"> The type of data expected from the API on success. </typeparam>
+    public class ApiResult<T> where T : new()
     {
         /// <summary>
-        /// Message sent by the API.
+        /// The result returned by the API if the call was successful.
         /// </summary>
-        [JsonProperty("message")]
-        public string Message { get; private set; }
+        public T Result { get; private set; }
+        
+        /// <summary>
+        /// The error returned by the API if the call failed.
+        /// </summary>
+        public ApiError Error { get; private set; }
 
         /// <summary>
-        /// The HTTP status code that was returned alongside the message.
+        /// Whether or not the call to the API was successful and no error was returned.
+        /// This does not mean the result cannot be null as the API can return null.
         /// </summary>
-        [JsonProperty("code")]
-        public HttpStatusCode Code { get; private set; }
+        public bool IsSuccessful()
+        {
+            return Error == null;
+        }
+
+        /// <summary>
+        /// Create a new ApiResult for a successful API call.
+        /// </summary>
+        /// <param name="result"> The result of the API call. </param>
+        public static ApiResult<T> FromSuccess(T result)
+        {
+            return new ApiResult<T>
+            {
+                Result = result,
+                Error = null
+            };
+        }
+
+        /// <summary>
+        /// Create a new ApiResult for a failed API call.
+        /// </summary>
+        /// <param name="error"> The error returned by the API. </param>
+        public static ApiResult<T> FromError(ApiError error)
+        {
+            return new ApiResult<T>
+            {
+                Result = default,
+                Error = error
+            };
+        }
     }
 }
