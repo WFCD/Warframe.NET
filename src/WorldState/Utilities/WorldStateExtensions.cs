@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using WorldState.Enums;
+using WarframeNet.WorldState.Enums;
 
-namespace WorldState.Utilities
+namespace WarframeNet.WorldState.Utilities
 {
     /// <summary>
     /// Contains a collection of extension methods for the world state API.
@@ -75,14 +75,14 @@ namespace WorldState.Utilities
                 throw new ArgumentOutOfRangeException(nameof(language), language, "Invalid world state language.");
             }
 
-            var attribute = member.GetCustomAttributes(typeof(AcceptLanguageAttribute), false).FirstOrDefault();
+            var attribute = member.GetCustomAttributes(typeof(QueryLanguageAttribute), false).FirstOrDefault();
             
             if (attribute == null)
             {
                 throw new ArgumentException($"Language '{Enum.GetName(language)}' is missing AcceptLanguage attribute.");
             }
 
-            var attr = (AcceptLanguageAttribute)attribute;
+            var attr = (QueryLanguageAttribute)attribute;
             if (string.IsNullOrWhiteSpace(attr.Language))
             {
                 throw new ArgumentException($"Platform '{Enum.GetName(language)}' has a null or whitespace language identifier.");

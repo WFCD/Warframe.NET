@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json.Serialization;
 
-namespace WorldState
+namespace WarframeNet.WorldState
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     public class EndpointPathAttribute : Attribute

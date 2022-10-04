@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace WorldState.Enums
+namespace WarframeNet.WorldState.Enums
 {
     /// <summary>
     /// List of available endpoints to retrieve data from.
     /// </summary>
-    // TODO: Add doc link to endpoint entity class for every field below.
     public enum WorldStateEndpoint
     {
         /// <summary>
@@ -28,7 +27,7 @@ namespace WorldState.Enums
         News,
         /// <summary>
         /// Ongoing in-game events.
-        /// Returns a list of <see cref="WarframeNet.WorldState.Event"/> objects.
+        /// Returns a list of <see cref="WarframeNet.WorldState.WorldEvent"/> objects.
         /// </summary>
         [EndpointPath("/events")]
         Events,

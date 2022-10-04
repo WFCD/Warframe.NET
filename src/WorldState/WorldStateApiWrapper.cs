@@ -2,12 +2,13 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using Newtonsoft.Json;
-using WorldState.Entities;
-using WorldState.Enums;
-using WorldState.Utilities;
+using WarframeNet.WorldState.Entities;
+using WarframeNet.WorldState.Enums;
+using WarframeNet.WorldState.Utilities;
 
-namespace WorldState
+namespace WarframeNet.WorldState
 {
     /// <summary>
     /// Handles making API calls to the world state using the specific parameters.
@@ -17,7 +18,7 @@ namespace WorldState
         /// <summary>
         /// Base URL of the world state api.
         /// </summary>
-        private readonly string _apiUrl = "https://api.warframestat.us";
+        private readonly string _apiUrl = "api.warframestat.us";
         private HttpClient _httpClient;
 
         /// <summary>
@@ -50,16 +51,27 @@ namespace WorldState
             WorldStateLanguage language, WorldStateEndpoint endpoint) where T : new()
         {
             var platformEndpoint = platform.GetPlatformEndpoint();
-            var languageHeader = language.GetLanguageIdentifier();
+            var languageParameter = language.GetLanguageIdentifier();
             var endpointPath = endpoint.GetEndpointPath();
 
             // Get the correct path for this API call.
-            var apiPath = $"{_apiUrl}{platformEndpoint}{endpointPath}";
+            var uriBuilder = new UriBuilder
+            {
+                Scheme = Uri.UriSchemeHttps,
+                Port = -1,
+                Host = _apiUrl,
+                Path = $"{platformEndpoint}{endpointPath}"
+            };
+
+            var queryParams = HttpUtility.ParseQueryString(uriBuilder.Query);
+            queryParams["language"] = languageParameter;
+
+            uriBuilder.Query = queryParams.ToString()!;
 
             // Set the user agent and language headers. 
-            using var request = new HttpRequestMessage(HttpMethod.Get, apiPath);
+            using var request = new HttpRequestMessage(HttpMethod.Get, uriBuilder.ToString());
             request.Headers.AcceptLanguage.Clear();
-            request.Headers.AcceptLanguage.ParseAdd(languageHeader);
+            request.Headers.AcceptLanguage.ParseAdd(languageParameter);
             request.Headers.UserAgent.ParseAdd("Warframe.NET");
 
             var response = await _httpClient.SendAsync(request).ConfigureAwait(false);

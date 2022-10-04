@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>WorldState</RootNamespace>
-    <AssemblyName>WorldState</AssemblyName>
+    <RootNamespace>WarframeNet.WorldState</RootNamespace>
+    <AssemblyName>WarframeNet.WorldState</AssemblyName>
     <LangVersion>default</LangVersion>
   </PropertyGroup>
 

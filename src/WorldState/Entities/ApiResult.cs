@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace WorldState.Entities
+﻿namespace WarframeNet.WorldState.Entities
 {
     /// <summary>
     /// Wrapper for data returned by the API. Handles cases where an error was returned by the API.

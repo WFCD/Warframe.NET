@@ -1,29 +1,29 @@
-﻿namespace WorldState.Enums
+﻿namespace WarframeNet.WorldState.Enums
 {
     /// <summary>
     /// Available languages to retrieve worldstate data in. Defaults to English.
     /// </summary>
     public enum WorldStateLanguage
     {
-        [AcceptLanguage("en")]
+        [QueryLanguage("en")]
         English,
-        [AcceptLanguage("de")]
+        [QueryLanguage("de")]
         German,
-        [AcceptLanguage("es")]
+        [QueryLanguage("es")]
         Spanish,
-        [AcceptLanguage("fr")]
+        [QueryLanguage("fr")]
         French,
-        [AcceptLanguage("it")]
+        [QueryLanguage("it")]
         Italian,
-        [AcceptLanguage("ko")]
+        [QueryLanguage("ko")]
         Korean,
-        [AcceptLanguage("po")]
+        [QueryLanguage("po")]
         Polish,
-        [AcceptLanguage("pt")]
+        [QueryLanguage("pt")]
         Portuguese,
-        [AcceptLanguage("ru")]
+        [QueryLanguage("ru")]
         Russian,
-        [AcceptLanguage("zh")]
+        [QueryLanguage("zh")]
         Chinese,
     }
 }

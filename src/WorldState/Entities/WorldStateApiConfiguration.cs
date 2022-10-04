@@ -1,6 +1,6 @@
-﻿using WorldState.Enums;
+﻿using WarframeNet.WorldState.Enums;
 
-namespace WorldState.Entities
+namespace WarframeNet.WorldState.Entities
 {
     /// <summary>
     /// Configuration options for the <see cref="WorldStateApiWrapper"/>

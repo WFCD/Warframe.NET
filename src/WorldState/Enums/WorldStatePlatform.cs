@@ -1,4 +1,4 @@
-﻿namespace WorldState.Enums
+﻿namespace WarframeNet.WorldState.Enums
 {
     /// <summary>
     /// Available platforms to retrieve the worldstate for.

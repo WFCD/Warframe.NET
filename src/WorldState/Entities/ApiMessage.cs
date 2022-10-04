@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using Newtonsoft.Json;
 
-namespace WorldState.Entities
+namespace WarframeNet.WorldState.Entities
 {
     /// <summary>
     /// Generally returned by the warframestat.us API when no error or results need to be returned.
